@@ -1,0 +1,23 @@
+.s-head{
+    font-size: 17px;
+    font-weight: bold;
+}
+.s-date{
+    font-size: 15px;
+    font-weight: bold;
+}
+.s-elg{
+    font-weight: bold;
+}
+form{
+    display: block;
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* width: 40%; */
+  background-color: rgb(246, 248, 248);
+  border: 2px solid rgb(4, 43, 116);
+ padding: 35px;
+ border-radius: 20px;
+
+    
+}

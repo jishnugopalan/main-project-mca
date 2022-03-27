@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myapp';
+  isuser:boolean=false
+  constructor(){
+    console.log("inn")
+  }
 }
