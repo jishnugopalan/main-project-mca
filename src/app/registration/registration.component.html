@@ -1,5 +1,43 @@
 <app-home-nav></app-home-nav>
 <div class="container-fluid">
-    
+    <h1 class="text-center text-success">Registration</h1>
+    <h3 class="text-center">Students</h3>
+    <div class="reg">
+    <form [formGroup]="registration">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Name</label>
+                <input class="form-control" formControlName="username" id="username">
+                <div class="text-danger"  *ngIf="username && username.invalid && username.touched">Name is required</div>
+            </div>
+            <div class="col-md-6">
+                <label>Email</label>
+                <input class="form-control" formControlName="email" id="email">
+                <div class="text-danger" *ngIf="email && email.invalid && email.touched">Email is required</div>
+            </div>
+        </div>
+        
+       
+        <div class="row">
+            <div class="col-md-6">
+                <label>Phone</label>
+                <input class="form-control" formControlName="phone" id="phone">
+                <div class="text-danger" *ngIf="phone && phone.invalid && phone.touched">Phone number is required</div>
+            </div>
+            <div class="col-md-6">
+                <label>Department</label>
+                <input class="form-control" formControlName="department" id="department">
+                <div class="text-danger" *ngIf="department && department.invalid && department.touched">Department is required</div>
+            </div>
+
+        </div>
+       
+        
+        <div class="col-md-6">
+            <button type="submit" [disabled]="!registration.valid" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</div>
 </div>
  <app-home-footer></app-home-footer>
