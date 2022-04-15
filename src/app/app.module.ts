@@ -8,6 +8,8 @@ import { HomeNavComponent } from './home-nav/home-nav.component';
 import { HomeComponent } from './home/home.component';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationServiceService } from './registration-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,10 +24,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+    
+    
 
   ],
-  providers: [],
+  providers: [
+    RegistrationServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

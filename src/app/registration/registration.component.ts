@@ -1,6 +1,8 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { RegistrationServiceService } from '../registration-service.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-registration',
@@ -8,6 +10,8 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  userrole:any;
+
   registration=new FormGroup({
     username:new FormControl('',[
       Validators.required
@@ -43,13 +47,29 @@ export class RegistrationComponent implements OnInit {
     return this.registration.get('phone')
 
   }
+  user=new User(this.registration.value.username,this.registration.value.email,this.registration.value.phone,)
+  register(){
+    
+    console.log(this.registration.value)
+    let resp=this.service.doRegistration(this.registration.value)
+    resp.subscribe((data)=>{
+      console.log(data)
 
-  constructor() { }
+    });
+  
+
+  }
+
+  constructor(private service:RegistrationServiceService) { }
 
   ngOnInit(): void {
     let a=new AppComponent()
     a.isuser=false
     console.log(a.isuser)
+    this.service.getuserroles().subscribe((res:any)=>{
+      console.log(res)
+      this.userrole=res;
+    })
   }
 
 }

@@ -3,7 +3,7 @@
     <h1 class="text-center text-success">Registration</h1>
     <h3 class="text-center">Students</h3>
     <div class="reg">
-    <form [formGroup]="registration">
+    <form [formGroup]="registration" (ngSubmit)="register()">
         <div class="row">
             <div class="col-md-6">
                 <label>Name</label>
@@ -26,8 +26,12 @@
             </div>
             <div class="col-md-6">
                 <label>Department</label>
-                <input class="form-control" formControlName="department" id="department">
-                <div class="text-danger" *ngIf="department && department.invalid && department.touched">Department is required</div>
+                <!-- <input class="form-control" formControlName="department" id="department">
+                <div class="text-danger" *ngIf="department && department.invalid && department.touched">Department is required</div> -->
+                <select class="form-control" formControlName="department" id="department">
+                    <option  *ngFor="let d of userrole" >{{d.name}}</option>
+
+                </select>
             </div>
 
         </div>
