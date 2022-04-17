@@ -19,5 +19,12 @@ export class RegistrationServiceService {
 
     return this.http.get("http://localhost:8080/getuserroles");
   }
+  public getDepartment():Observable<any>{
+    return this.http.get("http://localhost:8080/getdepartments");
+  }
+
+  public login(user:any):Observable<any>{
+    return this.http.post("http://localhost:8080/login",user);
+  }
   
 }

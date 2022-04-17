@@ -3,45 +3,87 @@
     <h1 class="text-center text-success">Registration</h1>
     <h3 class="text-center">Students</h3>
     <div class="reg">
-    <form [formGroup]="registration" (ngSubmit)="register()">
-        <div class="row">
-            <div class="col-md-6">
+    <form [formGroup]="registration" (ngSubmit)="register()" *ngIf="!reg">
+        
+            <div class="col-md-12">
                 <label>Name</label>
                 <input class="form-control" formControlName="username" id="username">
                 <div class="text-danger"  *ngIf="username && username.invalid && username.touched">Name is required</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label>Email</label>
                 <input class="form-control" formControlName="email" id="email">
                 <div class="text-danger" *ngIf="email && email.invalid && email.touched">Email is required</div>
             </div>
-        </div>
+       
         
        
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label>Phone</label>
                 <input class="form-control" formControlName="phone" id="phone">
                 <div class="text-danger" *ngIf="phone && phone.invalid && phone.touched">Phone number is required</div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <label>Department</label>
-                <!-- <input class="form-control" formControlName="department" id="department">
-                <div class="text-danger" *ngIf="department && department.invalid && department.touched">Department is required</div> -->
+                
                 <select class="form-control" formControlName="department" id="department">
-                    <option  *ngFor="let d of userrole" >{{d.name}}</option>
+                    <option  *ngFor="let d of dep" >{{d.department}}</option>
 
                 </select>
-            </div>
+            </div> -->
 
         </div>
+        
+            <div class="col-md-12">
+            <label>Password</label>
+              <input 
+                formControlName="password"
+                id="password" 
+                type="password" 
+                class="form-control">
+                <div class="text-danger" *ngIf="password && password.invalid && password.touched">Password is required</div>
+            </div>
+            <div class="col-md-12">
+                <label>Confirm Password</label>
+                <input 
+                formControlName="confirm_password"
+                id="confirm_password" 
+                type="password" 
+                class="form-control">
+                <div class="text-danger" *ngIf="confirm_password && confirm_password.invalid && confirm_password.touched">Password is required</div>
+                <div class="text-danger" *ngIf="registration.hasError('notSame')">Password not match</div>
+
+            </div>
+       
        
         
-        <div class="col-md-6">
+        <div class="col-md-12">
             <button type="submit" [disabled]="!registration.valid" class="btn btn-primary">Submit</button>
         </div>
 
     </form>
+    <!-- successful message -->
+    <div class="card text-center" *ngIf="reg">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text-success">Registration Successful</h2>
+          <p class="card-text">You are registered successfully with CUSAT Placement Celll</p>
+          <a href="/#login" class="btn btn-primary">Login</a>
+        </div>
+        <div class="card-footer text-muted">
+          
+        </div>
+      </div>
+
+      <!-- alert -->
+      <div class="text-center alert alert-danger" role="alert" *ngIf="alert">
+          <h3>User already exist!</h3>
+        {{msg}} 
+      </div>
+    
 </div>
 </div>
  <app-home-footer></app-home-footer>

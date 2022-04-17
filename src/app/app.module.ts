@@ -10,6 +10,8 @@ import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationServiceService } from './registration-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentHomeComponent } from './student/student-home/student-home.component';
+import { StudentNavComponent } from './student/student-nav/student-nav.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     routingComponents,
     HomeNavComponent,
     HomeComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    StudentHomeComponent,
+    StudentNavComponent
   ],
   imports: [
     BrowserModule,

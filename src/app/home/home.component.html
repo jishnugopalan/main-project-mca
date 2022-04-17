@@ -39,7 +39,7 @@
 </div>
 <div class="col-md-6 login" id="login">
     <h3 class="text-center text-primary">Login</h3>
-    <form [formGroup]="loginform">
+    <form [formGroup]="loginform" (ngSubmit)="login()" >
         <div class="col-md-12">
             <label for="email">Email</label>
             <input id="email" class="form-control" formControlName="email">
@@ -61,8 +61,12 @@
         <div class="col-md-12">
             <button type="submit" [disabled]="!loginform.valid" class="btn btn-primary">Submit</button>
         </div>
-        
+        <div class="text-center alert alert-danger" role="alert" *ngIf="alert">
+          <h5>Login error</h5>
+        {{msg}} 
+      </div>
     </form>
+    
 </div>
 </div>
   </div>

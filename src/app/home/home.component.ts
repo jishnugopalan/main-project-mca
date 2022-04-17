@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegistrationServiceService } from '../registration-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  msg=""
+  alert=false
   loginform=new FormGroup({
     email:new FormControl('',[
       Validators.required,
@@ -47,7 +51,34 @@ data:any=[
     "link":"www.tcs.com"
 }
 ]
-  constructor() { 
+  constructor(private service:RegistrationServiceService,private router: Router) { 
+    
+  }
+
+  login(){
+    console.log(this.loginform.value)
+    this.service.login(this.loginform.value).subscribe(
+      (data:any)=>{
+       this.alert=false
+      console.log(data)
+      console.log(data.enabled)
+      console.log(data.roles[0].name)
+      if(data.enabled==true){
+        if(data.roles[0].name=="student"){
+          this.router.navigateByUrl("/student-home")
+
+        }
+      }
+
+    },
+    error=>{
+      console.log(error.error.message)
+      this.alert=true
+      this.msg=error.error.message
+      
+
+    }
+    );
     
   }
 
