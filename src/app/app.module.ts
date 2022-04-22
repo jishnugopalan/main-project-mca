@@ -9,9 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationServiceService } from './registration-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StudentHomeComponent } from './student/student-home/student-home.component';
 import { StudentNavComponent } from './student/student-nav/student-nav.component';
+import { AuthInterceptor } from './helpers/auth.intercepter';
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { StudentNavComponent } from './student/student-nav/student-nav.component
 
   ],
   providers: [
-    RegistrationServiceService
+    RegistrationServiceService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

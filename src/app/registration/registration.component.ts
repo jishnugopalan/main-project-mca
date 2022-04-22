@@ -1,3 +1,4 @@
+import { AuthserviceService } from './../authservice.service';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
@@ -21,10 +22,10 @@ export class RegistrationComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
   registration=new FormGroup({
-    username:new FormControl('',[
+    fullname:new FormControl('',[
       Validators.required
     ]),
-    email:new FormControl('',[
+    username:new FormControl('',[
       Validators.required,
       Validators.email
     ]),
@@ -33,16 +34,18 @@ export class RegistrationComponent implements OnInit {
       Validators.minLength(10),
       Validators.maxLength(10),
       
+      
     ]),
-    department:new FormControl('',[
+    // department:new FormControl('',[
      
-    ]),
+    // ]),
     password:new FormControl('',[
-      Validators.required
+      Validators.required,
+      Validators.minLength(6)
     ]),
     confirm_password:new FormControl('',[
       Validators.required,
-      Validators.minLength(8)
+      Validators.minLength(6)
     ])
     
   },{validators:this.checkPasswords})
@@ -53,12 +56,12 @@ export class RegistrationComponent implements OnInit {
     return this.registration.get('department')
 
   }
-  get username(){
-    return this.registration.get('username')
+  get fullname(){
+    return this.registration.get('fullname')
 
   }
-  get email(){
-    return this.registration.get('email')
+  get username(){
+    return this.registration.get('username')
 
   }
   get phone(){
@@ -71,11 +74,11 @@ export class RegistrationComponent implements OnInit {
   get confirm_password(){
     return this.registration.get('confirm_paswword')
   }
-  user=new User(this.registration.value.username,this.registration.value.email,this.registration.value.phone,)
+  //user=new User(this.registration.value.username,this.registration.value.email,this.registration.value.phone,)
   register(){
     
     console.log(this.registration.value)
-    this.service.doRegistration(this.registration.value).subscribe(
+    this.auth.register(this.registration.value).subscribe(
       (data:any)=>{
         this.alert=false
         this.reg=true
@@ -93,17 +96,16 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  constructor(private service:RegistrationServiceService) { }
+  constructor(private service:RegistrationServiceService,private auth:AuthserviceService) { }
 
   ngOnInit(): void {
-    let a=new AppComponent()
-    a.isuser=false
-    console.log(a.isuser)
-    this.service.getDepartment().subscribe((res:any)=>{
-     console.log(res);
-     this.dep=res;
+    
+    
+    // this.service.getDepartment().subscribe((res:any)=>{
+    //  console.log(res);
+    //  this.dep=res;
 
-    })
+    // })
    
   }
 

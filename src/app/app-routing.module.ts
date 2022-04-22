@@ -8,7 +8,8 @@ import { StudentHomeComponent } from './student/student-home/student-home.compon
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'registration-component',component:RegistrationComponent},
-  {path:'student-home',component:StudentHomeComponent}
+  {path:'student-home',component:StudentHomeComponent},
+ 
 ];
 
 @NgModule({

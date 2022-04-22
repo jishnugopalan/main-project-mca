@@ -1,4 +1,4 @@
-<app-home-nav></app-home-nav>
+
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -42,9 +42,9 @@
     <form [formGroup]="loginform" (ngSubmit)="login()" >
         <div class="col-md-12">
             <label for="email">Email</label>
-            <input id="email" class="form-control" formControlName="email">
+            <input id="email" class="form-control" formControlName="username">
         </div>
-        <div class="col-md-12" *ngIf="email && email.invalid && email.touched">
+        <div class="col-md-12" *ngIf="username && username.invalid && username.touched">
             <div class="text-danger">Email is required</div>
 
         </div>

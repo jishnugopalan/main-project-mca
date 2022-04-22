@@ -1,3 +1,5 @@
+import { TokenStorageService } from './../token-storage.service';
+import { AuthserviceService } from './../authservice.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,15 +13,20 @@ import { RegistrationServiceService } from '../registration-service.service';
 export class HomeComponent implements OnInit {
   msg=""
   alert=false
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+
   loginform=new FormGroup({
-    email:new FormControl('',[
+    username:new FormControl('',[
       Validators.required,
       Validators.email
     ]),
     password:new FormControl('',Validators.required),
   })
-  get email(){
-    return this.loginform.get('email');
+  get username(){
+    return this.loginform.get('username');
   }
   get password(){
     return this.loginform.get('password');
@@ -51,24 +58,21 @@ data:any=[
     "link":"www.tcs.com"
 }
 ]
-  constructor(private service:RegistrationServiceService,private router: Router) { 
+  constructor(private service:RegistrationServiceService,private router: Router,private authservice:AuthserviceService,private tokenStorage: TokenStorageService) { 
     
   }
 
   login(){
     console.log(this.loginform.value)
-    this.service.login(this.loginform.value).subscribe(
+    this.authservice.login(this.loginform.value).subscribe(
       (data:any)=>{
-       this.alert=false
-      console.log(data)
-      console.log(data.enabled)
-      console.log(data.roles[0].name)
-      if(data.enabled==true){
-        if(data.roles[0].name=="student"){
-          this.router.navigateByUrl("/student-home")
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
 
-        }
-      }
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
 
     },
     error=>{
@@ -81,8 +85,15 @@ data:any=[
     );
     
   }
+  reloadPage(): void {
+    window.location.reload();
+  }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
 }

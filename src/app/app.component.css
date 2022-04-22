@@ -1,3 +1,10 @@
-body{
-    padding: 20px;
+.logo{
+    width:100%;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        inline-size: 400px;
+}
+a{
+    font-size: 16px;
+    font-weight: bold;
 }
