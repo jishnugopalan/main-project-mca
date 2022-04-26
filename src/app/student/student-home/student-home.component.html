@@ -1,4 +1,26 @@
 <!-- <app-student-nav></app-student-nav> -->
-<div class="container-fluid">
-    {{username}}
+<div class="">
+    <!-- {{username}} -->
+    <!-- <img [src]="photo" class="rounded-circle mb-3" style="width: 150px;"
+  alt="Avatar" /> -->
+ 
+
+    <div *ngIf="isapproved">
+        <div style="font-size: larger;font-weight: bold;">
+            <img [src]="photo" class="rounded-circle shadow-4" style="width: 150px; height: 160px;"
+            alt="Avatar" />{{fullname}}<br>
+           <!-- <span>{{department}}</span>  -->
+           </div>
+    </div>
+      
+           
+        
+      
+   
+
+   
+
+
+    <app-add-student-details *ngIf="!isapproved"></app-add-student-details>
+    <!-- <img [src]="photo"> -->
 </div>

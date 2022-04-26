@@ -76,9 +76,19 @@ data:any=[
 
     },
     error=>{
-      console.log(error.error.message)
-      this.alert=true
-      this.msg=error.error.message
+      console.log(error)
+      
+        if(error.error==null){
+          this.alert=true
+          this.msg="Incorrect password"
+
+        }
+        else{
+          this.alert=true
+          this.msg=error.error.message
+        }
+      
+     
       
 
     }

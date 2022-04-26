@@ -1,0 +1,141 @@
+<div class="container">
+    <h1 class="text-center">Student Details</h1>
+    <form [formGroup]="student" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Department</label>
+                <select class="form-control" formControlName="departmentid">
+                    <option value disabled selected>Select Department</option>
+                    <option value="{{d.departmentid}}" *ngFor="let d of dep">{{d.department}}</option>
+                </select>
+                <div class="text-danger"  *ngIf="departmentid && departmentid.invalid && departmentid.touched">Please select a department</div>
+            </div>
+            <div class="col-md-6">
+                <label>Register Number</label>
+                <input type="text" class="form-control" formControlName="registration_number" id="registration_number">
+                <div class="text-danger"  *ngIf="student.controls['registration_number'] && student.controls['registration_number'].hasError('required') && student.controls['registration_number'].touched">Register number is required</div>
+                <div class="text-danger"  *ngIf="student.controls['registration_number'].hasError('minlength') || student.controls['registration_number'].hasError('maxlength')">Please enter correct register number</div>
+            </div>
+        </div>
+        <br>
+        <h5 class="text-center text-primary">Personal Details</h5>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label>House Name</label>
+                <input type="text" class="form-control" formControlName="house" required="">
+                <!-- <div class="text-danger"  *ngIf="house && house.invalid && house.touched">Please enter a vlaid huse name</div> -->
+                <div class="text-danger"  *ngIf="student.controls['house'] && student.controls['house'].hasError('required') && student.controls['house'].touched">House is required</div>
+                <div class="text-danger"  *ngIf="student.controls['house'].hasError('minlength')">Please enter a vlaid house name</div>
+                
+            </div>
+            <div class="col-md-6">
+                <label>Place</label>
+                <input type="text" class="form-control" formControlName="place" required="">
+                <div class="text-danger"  *ngIf="student.controls['place'] && student.controls['place'].hasError('required') && student.controls['place'].touched">Place is required</div>
+                <div class="text-danger"  *ngIf="student.controls['place'].hasError('minlength')">Please enter a vlaid place</div>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Country</label>
+                <select formControlName="country" class="form-control" (change)="getStates(this.student.controls['country'].value)">
+                    <option value disabled selected>Select Country</option>
+                    <option value="{{c.name}}" *ngFor="let c of countries">{{c.name}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>State</label>
+                <select  formControlName="state" class="form-control" (change)="getDistrict(this.student.controls['country'].value , this.student.controls['state'].value)">
+                    <option value disabled selected>Select State</option>
+                    <option value="{{s.name}}" *ngFor="let s of states">{{s.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>District/City</label>
+                <select formControlName="district" class="form-control">
+                    <option value disabled selected>Select District</option>
+                    <option value="{{d}}" *ngFor="let d of districts">{{d}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Pincode</label>
+                <input type="number" formControlName="pincode" class="form-control">
+                <div class="text-danger"  *ngIf="student.controls['pincode'] && student.controls['pincode'].hasError('required') && student.controls['pincode'].touched">Pincode is required</div>
+                <div class="text-danger"  *ngIf="student.controls['pincode'].hasError('min') || student.controls['pincode'].hasError('max')">Please enter a vlaid pincode</div>
+            </div>
+        </div>
+
+        <h5 class="text-center text-primary">Academic Details</h5>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>SSLC Percentage</label>
+                <input type="number" class="form-control" formControlName="sslcpercentage" max="100">
+                <div class="text-danger"  *ngIf="student.controls['sslcpercentage'] && student.controls['sslcpercentage'].hasError('required') && student.controls['sslcpercentage'].touched">SSLC Percentage is required</div>
+            </div>
+            <div class="col-md-4">
+                <label>Plustwo Percentage</label>
+                <input type="number" class="form-control" formControlName="plustwopercentage" max="100">
+                <div class="text-danger"  *ngIf="student.controls['plustwopercentage'] && student.controls['plustwopercentage'].hasError('required') && student.controls['plustwopercentage'].touched">Plustwo Percentage is required</div>
+            </div>
+            
+            
+            <div class="col-md-4">
+                <label>UG Percentage</label>
+                <input type="number" class="form-control" formControlName="ugpercentage" max="100">
+                <div class="text-danger"  *ngIf="student.controls['ugpercentage'] && student.controls['ugpercentage'].hasError('required') && student.controls['ugpercentage'].touched">UG Percentage is required</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>SSLC</label>
+                <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf">
+            </div>
+
+            <div class="col-md-4">
+                <label>Plus Two</label>
+                <input type="file"  class="form-control" (change)="selectFile2($event)" accept="application/pdf">
+            </div>
+
+            <div class="col-md-4">
+                <label>UG</label>
+                <input type="file"  class="form-control" (change)="selectFile3($event)" accept="application/pdf">
+            </div>
+        
+          </div>
+         
+
+        
+
+        <div class="row">
+            
+            
+           
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>ID Proof</label>
+                <input type="file"  class="form-control" (change)="selectFile4($event)" accept="application/pdf">
+            </div>
+            <div class="col-md-6">
+                <label>Photo</label>
+                <input type="file" class="form-control" (change)="selectFile5($event)" accept="image/*">
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <button type="submit" [disabled]="!student.valid" class="btn btn-primary">Submit</button>
+        </div>
+
+
+    </form>
+</div>

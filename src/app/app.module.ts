@@ -13,6 +13,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StudentHomeComponent } from './student/student-home/student-home.component';
 import { StudentNavComponent } from './student/student-nav/student-nav.component';
 import { AuthInterceptor } from './helpers/auth.intercepter';
+import { AddStudentDetailsComponent } from './student/add-student-details/add-student-details.component';
+import { StudentServiceService } from './student-service.service';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { AuthInterceptor } from './helpers/auth.intercepter';
     HomeComponent,
     HomeFooterComponent,
     StudentHomeComponent,
-    StudentNavComponent
+    StudentNavComponent,
+    AddStudentDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AuthInterceptor } from './helpers/auth.intercepter';
   ],
   providers: [
     RegistrationServiceService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    StudentServiceService
 
   ],
   bootstrap: [AppComponent]
