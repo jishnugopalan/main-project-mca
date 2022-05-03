@@ -2,13 +2,21 @@
     <h1 class="text-center">Student Details</h1>
     <form [formGroup]="student" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label>Department</label>
-                <select class="form-control" formControlName="departmentid">
+                <select class="form-control" formControlName="departmentid" (change)="getBatches(student.controls['departmentid'].value)">
                     <option value disabled selected>Select Department</option>
                     <option value="{{d.departmentid}}" *ngFor="let d of dep">{{d.department}}</option>
                 </select>
                 <div class="text-danger"  *ngIf="departmentid && departmentid.invalid && departmentid.touched">Please select a department</div>
+            </div>
+            <div class="col-md-3">
+                <label>Batch</label>
+                <select class="form-control" formControlName="batchid">
+                    <option value disabled selected>Select Batch</option>
+                    <option value="{{d.batchid}}" *ngFor="let d of batch">{{d.batchname}}</option>
+                </select>
+                <div class="text-danger"  *ngIf="student.controls['batchid'] && student.controls['batchid'].invalid && student.controls['batchid'].touched">Please select a batch</div>
             </div>
             <div class="col-md-6">
                 <label>Register Number</label>
@@ -70,8 +78,47 @@
                 <div class="text-danger"  *ngIf="student.controls['pincode'].hasError('min') || student.controls['pincode'].hasError('max')">Please enter a vlaid pincode</div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Gender</label>
+                <div class="form-check">
+                <input type="radio" formControlName="gender" value="Male" class="form-check-input">
+                <label class="form-check-label" for="flexRadioDefault1">
+                   Male
+                </label>
+               </div>
+               <div class="form-check">
+                <input type="radio" formControlName="gender" value="Female" class="form-check-input">
+                <label class="form-check-label" for="flexRadioDefault1">
+                   Female
+                </label>
+                </div>
+                <div class="form-check">
+                <input type="radio" formControlName="gender" value="Others" class="form-check-input">
+                <label class="form-check-label" for="flexRadioDefault1">
+                   Others
+                </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" formControlName="date_of_birth"  max="{{y}}-12-31">
+            </div>
+        </div>
+
+
 
         <h5 class="text-center text-primary">Academic Details</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Academic Staring Year</label>
+                <input type="date" class="form-control" formControlName="academic_starting_year">
+            </div>
+            <div class="col-md-6">
+                <label>Academic Ending Year</label>
+                <input type="date" class="form-control" formControlName="academic_ending_year">
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4">
@@ -96,17 +143,20 @@
         <div class="row">
             <div class="col-md-4">
                 <label>SSLC</label>
-                <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf">
+                <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf" formControlName="sslc">
+                <div class="text-danger"  *ngIf="student.controls['sslc'] && student.controls['sslc'].hasError('required') && student.controls['sslc'].touched">SSLC certificate is required</div>
             </div>
 
             <div class="col-md-4">
                 <label>Plus Two</label>
-                <input type="file"  class="form-control" (change)="selectFile2($event)" accept="application/pdf">
+                <input type="file"  class="form-control" (change)="selectFile2($event)" accept="application/pdf" formControlName="plustwo">
+                <div class="text-danger"  *ngIf="student.controls['plustwo'] && student.controls['plustwo'].hasError('required') && student.controls['plustwo'].touched">Plus Two certicicate is required</div>
             </div>
 
             <div class="col-md-4">
                 <label>UG</label>
-                <input type="file"  class="form-control" (change)="selectFile3($event)" accept="application/pdf">
+                <input type="file"  class="form-control" (change)="selectFile3($event)" accept="application/pdf" formControlName="ug">
+                <div class="text-danger"  *ngIf="student.controls['ug'] && student.controls['ug'].hasError('required') && student.controls['ug'].touched">UG certificate is required</div>
             </div>
         
           </div>
@@ -123,11 +173,15 @@
         <div class="row">
             <div class="col-md-6">
                 <label>ID Proof</label>
-                <input type="file"  class="form-control" (change)="selectFile4($event)" accept="application/pdf">
+                <input type="file"  class="form-control" (change)="selectFile4($event)" accept="application/pdf" formControlName="idproof"> 
+                <div class="text-danger"  *ngIf="student.controls['idproof'] && student.controls['idproof'].hasError('required') && student.controls['idproof'].touched">ID Proof is required</div>
             </div>
             <div class="col-md-6">
                 <label>Photo</label>
-                <input type="file" class="form-control" (change)="selectFile5($event)" accept="image/*">
+                <input type="file" class="form-control" (change)="selectFile5($event)" accept="image/*" formControlName="photo">
+                <div class="text-danger"  *ngIf="student.controls['photo'] && student.controls['photo'].hasError('required') && student.controls['photo'].touched">ID Proof is required</div>
+
+
             </div>
         </div>
 

@@ -15,6 +15,13 @@ export class AddStudentDetailsComponent implements OnInit {
   countries:any
   states:any
   districts:any
+  file1:any
+  file2:any
+  file3:any
+  file4:any
+  file5:any
+  batch:any
+  y:any
   constructor(private service:RegistrationServiceService,private tokenservice:TokenStorageService,private studentService:StudentServiceService) { }
   
   student=new FormGroup({
@@ -45,6 +52,16 @@ Validators.pattern("^\\d{0,9}$")]),
   Validators.min(100000)]),
     country:new FormControl('',[
       Validators.required]),
+      sslcpercentage:new FormControl('',[
+        Validators.required
+       ]),
+       plustwopercentage:new FormControl('',[
+        Validators.required
+       ]),
+       ugpercentage:new FormControl('',[
+        Validators.required
+       ]),
+
     sslc:new FormControl('',[
      Validators.required
       ]),
@@ -60,18 +77,29 @@ Validators.pattern("^\\d{0,9}$")]),
     photo:new FormControl('',[
       Validators.required
      ]),
-     sslcpercentage:new FormControl('',[
-      Validators.required
+     gender:new FormControl('',[
+       Validators.required
      ]),
-     plustwopercentage:new FormControl('',[
-      Validators.required
+     date_of_birth:new FormControl('',[
+       Validators.required
      ]),
-     ugpercentage:new FormControl('',[
-      Validators.required
+     batchid:new FormControl('',[
+       Validators.required
      ]),
-    
+     academic_starting_year:new FormControl('',[
+       Validators.required
+     ]),
+     academic_ending_year:new FormControl('',[
+       Validators.required
+     ])
 
   })
+
+  // private String gender;
+	// private String date_of_birth;
+	// private String batchid;
+	// private String academic_starting_year;
+	// private String academic_ending_year;
   get registration_number(){
     return this.student.get('registration_number')
   }
@@ -122,6 +150,14 @@ public getDistrict(c:any,s:any){
 
 }
 
+getBatches(departmentid:any){
+  console.log("innn")
+console.log(departmentid)
+this.studentService.getBatchById(Number(departmentid)).subscribe((res:any)=>{
+  console.log(res)
+this.batch=res
+})
+}
 
 
 
@@ -133,11 +169,9 @@ public getDistrict(c:any,s:any){
       
     }
     else{
-      this.student.value.sslc = event.target.files[0];
+      this.file1 = event.target.files[0];
       console.log("files added")
-      console.log(this.student.value)
-      console.log(this.student.value)
-      this.student.controls['sslc'].setErrors(null)
+      console.log(this.file1)
     }
     
   }
@@ -149,10 +183,9 @@ public getDistrict(c:any,s:any){
       alert("The maximum file size to upload is 1MB ")
     }
     else{
-      this.student.value.plustwo = event.target.files[0];
+      this.file2 = event.target.files[0];
       console.log("files added")
-      console.log(this.student.value)
-      this.student.controls['plustwo'].setErrors(null)
+     console.log(this.file2)
     }
     
   }
@@ -163,10 +196,9 @@ public getDistrict(c:any,s:any){
       alert("The maximum file size to upload is 1MB ")
     }
     else{
-      this.student.value.ug = event.target.files[0];
+      this.file3 = event.target.files[0];
       console.log("files added")
-      console.log(this.student.value)
-      this.student.controls['ug'].setErrors(null)
+      console.log(this.file3)
     }
     
   }
@@ -177,10 +209,10 @@ public getDistrict(c:any,s:any){
       alert("The maximum file size to upload is 1MB ")
     }
     else{
-      this.student.value.idproof = event.target.files[0];
+      this.file4 = event.target.files[0];
       console.log("files added")
-      console.log(this.student.value)
-      this.student.controls['idproof'].setErrors(null)
+      console.log(this.file4)
+     
     }
     
   }
@@ -192,10 +224,10 @@ public getDistrict(c:any,s:any){
       alert("The maximum file size to upload is 1MB ")
     }
     else{
-      this.student.value.photo = event.target.files[0];
+      this.file5 = event.target.files[0];
       console.log("files added")
-      console.log(this.student.value)
-      this.student.controls['photo'].setErrors(null)
+      console.log(this.file5)
+      
     }
     
   }
@@ -204,6 +236,11 @@ public getDistrict(c:any,s:any){
     const user = this.tokenservice.getUser();
     console.log("in submit")
     this.student.value.userid=user.id.toString()
+    this.student.value.sslc=this.file1
+    this.student.value.plustwo=this.file2
+    this.student.value.ug=this.file3
+    this.student.value.idproof=this.file4
+    this.student.value.photo=this.file5
     console.log(this.student.value)
    
     //this.student.value.userid,this.student.value.departmentid,this.student.value.registartion_number,this.student.value.house,this.student.value.place,this.student.value.district,
@@ -226,6 +263,8 @@ public getDistrict(c:any,s:any){
       console.log(res.data)
       this.countries=res.data
     })
+
+    this.y=new Date().getFullYear()-18
     
   }
 

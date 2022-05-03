@@ -20,51 +20,9 @@ export class StudentServiceService {
 
   public addstudentdetails(userDetails:any):Observable<any>{
 
-    //_userid:any,_departmentid:any,_registration_number:any,_house:any,_place:any,_district:any,_state:any,_country:any,_pincode:any,_sslc:any,_plustwo:any,_ug:any,_idproof:any,_photo:any
-  //  console.log(_userid)
   let params = new HttpParams();
     params=params.set('userid',userDetails.userid)
-  //  params=params.append('departmentid',_departmentid)
-  //  params=params.append('registartion_number',_registration_number)
-  //  params=params.append('house',_house)
-  //  params=params.append('place',_place)
-  //  params=params.append('district',_district)
-  //  params=params.append('state',_state)
-  //  params=params.append('country',_country)
-  //  params=params.append('pincode',_pincode)
-  //  params=params.append('sslc',_sslc)
-  //  params=params.append('plustwo',_plustwo)
-  //  params=params.append('ug',_ug)
-  //  params=params.append('idproof',_idproof)
 
-  //  params=params.append('photo',_photo)
-
-  //   console.log(params)
-  //  const httpParams=new HttpParams({
-  //    fromObject:{
-      
-  //     'departmentid':userDetails.departmentid,
-  //     'registration_number':userDetails.registration_number,
-  //     'house':userDetails.house,
-  //     'place':userDetails.place,
-  //     'district':userDetails.district,
-  //     'state':userDetails.state,
-  //     'country':userDetails.country,
-  //     'pincode':userDetails.pincode,
-  //     'sslc':userDetails.sslc,
-  //     'plustwo':userDetails.plustwo,
-  //     'ug':userDetails.ug,
-  //     'idproof':userDetails.idproof
-  //    }
-  //  })
-  //  httpParams.set('userid',userDetails.userid)
-
-  //  console.log(httpParams)
-  //  const url = `http://localhost:8080/addstudentdetails`;
-  //  let input = new FormData();
-  //  input.append('url', userDetails);
-  //  console.log(input)   
-  //  return this.http.post(url, input).pipe(map((resp: any) => resp));
 let body = new FormData();
 body.append('userid', userDetails.userid);
 body.append('departmentid',userDetails.departmentid,);
@@ -83,8 +41,11 @@ body.append('photo',userDetails.photo)
 body.append('sslcpercentage',userDetails.sslcpercentage)
 body.append('plustwopercentage',userDetails.plustwopercentage)
 body.append('ugpercentage',userDetails.ugpercentage)
-
-
+body.append('gender',userDetails.gender)
+body.append('date_of_birth',userDetails.date_of_birth)
+body.append('batchid',userDetails.batchid)
+body.append('academic_starting_year',userDetails.academic_starting_year)
+body.append('academic_ending_year',userDetails.academic_ending_year)
 
 
   const myheader = new HttpHeaders().set('Content-Type', 'form-data')
@@ -121,6 +82,14 @@ body.append('ugpercentage',userDetails.ugpercentage)
 
   public getDepartmentById(_departmentid:any){
     return this.http.get("http://localhost:8080/getdepartmentbyid",{
+      params:{
+        departmentid:_departmentid
+      }
+    })
+  }
+  public getBatchById(_departmentid:number){
+
+    return this.http.get("http://localhost:8080/viewbydepartmentid",{
       params:{
         departmentid:_departmentid
       }

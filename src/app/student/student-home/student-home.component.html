@@ -1,16 +1,33 @@
 <!-- <app-student-nav></app-student-nav> -->
-<div class="">
+<div class="container-fluid" *ngIf="isapproved">
     <!-- {{username}} -->
     <!-- <img [src]="photo" class="rounded-circle mb-3" style="width: 150px;"
   alt="Avatar" /> -->
  
 
-    <div *ngIf="isapproved">
-        <div style="font-size: larger;font-weight: bold;">
+  
+    <div class="row">
+      <div class="col-md-3">
+        <h5 class="text-center">My Profile</h5>
+        <div class="card text-center bg-light">
+          <div style="font-size: larger;font-weight: bold;">
             <img [src]="photo" class="rounded-circle shadow-4" style="width: 150px; height: 160px;"
-            alt="Avatar" />{{fullname}}<br>
-           <!-- <span>{{department}}</span>  -->
-           </div>
+            alt="Avatar" />
+            <h5 class="text-primary">{{fullname}}</h5>
+           <span>{{department}}</span> 
+        </div>
+
+        </div>
+       
+         
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-center text-danger">News Feeds</h2>
+        
+      </div>
+      <div class="col-md-3">
+        <h5 class="text-center">Placement Updates</h5>
+      </div>
     </div>
       
            
@@ -21,6 +38,7 @@
    
 
 
-    <app-add-student-details *ngIf="!isapproved"></app-add-student-details>
+    
     <!-- <img [src]="photo"> -->
 </div>
+<app-add-student-details *ngIf="!isapproved"></app-add-student-details>
