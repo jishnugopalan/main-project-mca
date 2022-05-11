@@ -15,6 +15,10 @@ import { StudentNavComponent } from './student/student-nav/student-nav.component
 import { AuthInterceptor } from './helpers/auth.intercepter';
 import { AddStudentDetailsComponent } from './student/add-student-details/add-student-details.component';
 import { StudentServiceService } from './student-service.service';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddPlacementDetailsComponent } from './admin/add-placement-details/add-placement-details.component';
+import { AdminService } from './admin.service';
 
 
 @NgModule({
@@ -27,13 +31,17 @@ import { StudentServiceService } from './student-service.service';
     HomeFooterComponent,
     StudentHomeComponent,
     StudentNavComponent,
-    AddStudentDetailsComponent
+    AddStudentDetailsComponent,
+    AdminHomeComponent,
+    AddPlacementDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    
     
     
 
@@ -41,7 +49,8 @@ import { StudentServiceService } from './student-service.service';
   providers: [
     RegistrationServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    StudentServiceService
+    StudentServiceService,
+    AdminService
 
   ],
   bootstrap: [AppComponent]

@@ -95,4 +95,22 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
       }
     })
   }
+  public getBatchname(_batchid:any){
+    return this.http.get("http://localhost:8080/viewbybatchid",{
+      params:{
+        batchid:_batchid
+      }
+    })
+
+  }
+
+  public getPlacementDetailsByDepartmentid(_departmentid:any){
+    return this.http.get("http://localhost:8080/get-placementdetails-by-department",{
+      params:{
+        departmentid:_departmentid
+      }
+    })
+  }
+
+
 }

@@ -1,0 +1,49 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-md-6">
+            <label>Company Name</label>
+            <input type="text" class="form-control" formControlName="companyname">
+        </div>
+        <div class="col-md-6">
+            <label>Designation</label>
+            <input type="text" class="form-control" formControlName="designation">
+        </div>
+        <div class="col-md-6">
+            <label>CTC</label>
+            <input type="text" class="form-control" formControlName="ctc">
+        </div>
+        <div class="col-md-6">
+            <label>Description</label>
+            <input type="text" class="form-control" formControlName="description">
+        </div>
+        <div class="col-md-6">
+            <label>Registartion Link</label>
+            <input type="text" class="form-control" formControlName="registration_link">
+        </div>
+        <div class="col-md-6">
+            <label>Registartion Start Date</label>
+            <input type="date" class="form-control" formControlName="registration_start_date">
+        </div>
+        <div class="col-md-6">
+            <label>Registartion Start Date</label>
+            <input type="date" class="form-control" formControlName="registration_end_date">
+        </div>
+        <div class="col-md-6">
+            <label>Upload Job Description/Email Copy</label>
+            <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf" formControlName="job_description_file">
+        </div>
+        <div class="col-md-3">
+           <div class="form-chek" *ngFor="let d of dep">
+            <input type="checkbox" class="form-check-input" id="{{d.departmentid}}" value="{{d.departmentid}}" (change)="getDeps($event)">
+            <label class="form-check-label">{{d.department}}</label>
+
+           </div>
+        
+         </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        </div>
+        
+
+    </form>
+</div>

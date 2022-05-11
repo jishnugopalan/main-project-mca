@@ -12,8 +12,7 @@ export class AppComponent {
   isuser:boolean=false
   private roles=[];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+  isadmin:boolean=false
 
   username="";
   constructor(private tokenservice:TokenStorageService,private router:Router){
@@ -21,7 +20,7 @@ export class AppComponent {
   }
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenservice.getToken();
-    console.log("Is loggedins",this.isLoggedIn)
+    console.log("Is loggedin",this.isLoggedIn)
 
     if (this.isLoggedIn) {
       const user = this.tokenservice.getUser();
@@ -30,14 +29,23 @@ export class AppComponent {
 
       // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      if(this.roles[0]=="student"){
+      if(this.roles[0]=="student" ||this.roles[1]=="student"){
         this.isuser=true
         this.router.navigateByUrl("/student-home")
+      }
+      
+      if(this.roles[0]=="admin"){
+        this.isuser=false
+        this.isadmin=true
+        this.router.navigateByUrl("/admin-home")
       }
 
       this.username = user.username;
       console.log("Username",this.username)
     }
+  }
+  addplacementdetails(){
+    this.router.navigateByUrl("/add-placement-details")
   }
 
   logout(): void {

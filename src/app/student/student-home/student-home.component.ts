@@ -2,6 +2,8 @@ import { StudentServiceService } from './../../student-service.service';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/token-storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import {saveAs as importedSaveAs} from "file-saver";
 @Component({
   selector: 'app-student-home',
   templateUrl: './student-home.component.html',
@@ -14,9 +16,27 @@ photofilename=""
 photo:any
 fullname:any
 department=""
-  constructor(private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer) { }
+batchname=""
+placementDetails:any
+  constructor(private router: Router,private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer) { }
 
-  
+  goto(url:any){
+    console.log(url)
+    
+    let jwt=this.tokenservice.getToken();
+    this.router.ngOnDestroy();
+    
+    window.location.href = encodeURI("https://"+url);
+    //window.location.replace(url.toString());
+    //window.open(url.toString(), "_blank");
+  }
+  download(file:any){
+    this.studentservice.getPhoto(file).subscribe((res:any)=>{
+      console.log(res)
+      importedSaveAs(res, file);
+    })
+
+  }
   
 
   ngOnInit(): void {
@@ -33,6 +53,10 @@ department=""
           this.department=res.department
 
         })
+        this.studentservice.getBatchname(data.batchid).subscribe((res:any)=>{
+          console.log(res)
+          this.batchname=res.batchname
+        })
 
 
 
@@ -46,6 +70,15 @@ department=""
 
         this.photo = this.sanitizer.bypassSecurityTrustUrl(url);
         })
+        //fetching placement details
+        if(this.isapproved==true){
+          console.log("Department"+data.departmentid)
+          this.studentservice.getPlacementDetailsByDepartmentid(data.departmentid).subscribe((res:any)=>{
+            console.log(res)
+            this.placementDetails=res
+          })
+
+        }
       },
       error=>{
         console.log(error.error.message)
