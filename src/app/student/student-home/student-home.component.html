@@ -8,12 +8,12 @@
   
     <div class="row">
       <div class="col-md-3">
-        <h5 class="text-center">My Profile</h5>
+        <h2 class="text-center">My Profile</h2>
         <div class="card text-center bg-light">
           <div style="font-size: larger;font-weight: bold;">
             <img [src]="photo" class="rounded-circle shadow-4" style="width: 150px; height: 160px;"
             alt="Avatar" />
-            <h5 class="text-primary">{{fullname}}</h5>
+            <h3 class="text-primary">{{fullname}}</h3>
             <span>{{batchname}}</span><br>
            <span>{{department}}</span> 
             
@@ -24,7 +24,7 @@
          
       </div>
       <div class="col-md-6">
-        <h2 class="text-center text-danger">News Feeds</h2>
+        <h1 class="text-center text-danger">News Feeds</h1>
         <div *ngFor="let d of placementDetails">
           
           <h5></h5>
@@ -32,13 +32,13 @@
 
           <div class="card">
             <div class="card-header">
-              {{d.companyname}}
+              <h3>{{d.companyname}}</h3>
             </div>
             <div class="card-body">
-              <h5 class="card-title">{{d.designantion}}</h5>
+              <h2 class="card-title">{{d.designantion}}</h2>
               <p class="card-text">{{d.description}}</p>
-              <h6>CTC:{{d.ctc}}</h6>
-              <h6>Registration {{d.registration_start_date}} to {{d.registration_end_date}}</h6>
+              <h3>CTC:{{d.ctc}}LPA</h3>
+              <h3>Registration {{d.registration_start_date}} to {{d.registration_end_date}}</h3>
               <div>
                 <span style="margin-right: 10px;">
                   <a class="btn btn-success" (click)="download(d.job_description_file)">Download Job Description</a>
@@ -56,7 +56,7 @@
         
       </div>
       <div class="col-md-3">
-        <h5 class="text-center">Placement Updates</h5>
+        <h2 class="text-center">Placement Updates</h2>
       </div>
     </div>
       

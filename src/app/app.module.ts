@@ -19,6 +19,10 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddPlacementDetailsComponent } from './admin/add-placement-details/add-placement-details.component';
 import { AdminService } from './admin.service';
+import { ViewPlacementDetailsComponent } from './admin/view-placement-details/view-placement-details.component';
+import { ViewAPlacementDetailsComponent } from './admin/view-a-placement-details/view-a-placement-details.component';
+import { UpdatePlacementDetailsComponent } from './admin/update-placement-details/update-placement-details.component';
+import { AddRepComponent } from './admin/add-rep/add-rep.component';
 
 
 @NgModule({
@@ -33,7 +37,12 @@ import { AdminService } from './admin.service';
     StudentNavComponent,
     AddStudentDetailsComponent,
     AdminHomeComponent,
-    AddPlacementDetailsComponent
+    AddPlacementDetailsComponent,
+    ViewPlacementDetailsComponent,
+    ViewAPlacementDetailsComponent,
+    UpdatePlacementDetailsComponent,
+    AddRepComponent,
+    
   ],
   imports: [
     BrowserModule,

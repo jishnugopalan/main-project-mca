@@ -29,7 +29,11 @@ export class AppComponent {
 
       // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      if(this.roles[0]=="student" ||this.roles[1]=="student"){
+      if(this.roles[0]=="student"){
+        this.isuser=true
+        this.router.navigateByUrl("/student-home")
+      }
+      if(this.roles[0]=="student" && this.roles[1]=="representative"){
         this.isuser=true
         this.router.navigateByUrl("/student-home")
       }
@@ -46,6 +50,9 @@ export class AppComponent {
   }
   addplacementdetails(){
     this.router.navigateByUrl("/add-placement-details")
+  }
+  viewplacementdetails(){
+    this.router.navigateByUrl("/view-placement-details")
   }
 
   logout(): void {

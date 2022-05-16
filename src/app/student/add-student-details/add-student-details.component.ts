@@ -166,7 +166,7 @@ this.batch=res
     console.log(event.target.files[0].size)
     if(event.target.files[0].size>1024*1024*2){
       alert("The maximum file size to upload is 1MB ")
-      
+      this.student.controls['sslc'].setErrors({'required': true});
     }
     else{
       this.file1 = event.target.files[0];
@@ -181,6 +181,7 @@ this.batch=res
     console.log(event.target.files[0].size)
     if(event.target.files[0].size>1024*1024*2){
       alert("The maximum file size to upload is 1MB ")
+      this.student.controls['plustwo'].setErrors({'required': true});
     }
     else{
       this.file2 = event.target.files[0];
@@ -194,6 +195,7 @@ this.batch=res
     console.log(event.target.files[0].size)
     if(event.target.files[0].size>1024*1024*2){
       alert("The maximum file size to upload is 1MB ")
+      this.student.controls['ug'].setErrors({'required': true});
     }
     else{
       this.file3 = event.target.files[0];
@@ -207,6 +209,7 @@ this.batch=res
     console.log(event.target.files[0].size)
     if(event.target.files[0].size>1024*1024*2){
       alert("The maximum file size to upload is 1MB ")
+      this.student.controls['idproof'].setErrors({'required': true});
     }
     else{
       this.file4 = event.target.files[0];
@@ -222,6 +225,7 @@ this.batch=res
     console.log(event.target.files[0].size)
     if(event.target.files[0].size>1024*1024*2){
       alert("The maximum file size to upload is 1MB ")
+      this.student.controls['photo'].setErrors({'required': true});
     }
     else{
       this.file5 = event.target.files[0];

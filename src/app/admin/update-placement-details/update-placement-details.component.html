@@ -1,15 +1,15 @@
 <div class="container">
-    <h1 class="text-center">Add Placement Details</h1>
+    <h1 class="text-center">Update Placement Details</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
             <div class="col-md-6">
                 <label for="companyname">Company Name<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="companyname" id="companyname" placeholder="Minimum two characters">
+                <input type="text" class="form-control" formControlName="companyname" id="companyname" placeholder="Minimum two characters" [(ngModel)]="pdetails.companyname">
                 <div class="text-danger"  *ngIf="form.controls['companyname'] && form.controls['companyname'].hasError('required') && form.controls['companyname'].touched">Company name is required</div>
             </div>
             <div class="col-md-6">
                 <label>Designation<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="designation" placeholder="Minimum two characters">
+                <input type="text" class="form-control" formControlName="designation" placeholder="Minimum two characters" [(ngModel)]="pdetails.designantion">
                 <div class="text-danger"  *ngIf="form.controls['designation'] && form.controls['designation'].hasError('required') && form.controls['designation'].touched">Designation is required</div>
 
             </div>
@@ -17,14 +17,14 @@
         <div class="row">
             <div class="col-md-6">
                 <label>CTC in LPA<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="ctc" placeholder="Example 4 or 4.5">
+                <input type="text" class="form-control" formControlName="ctc" placeholder="Example 4 or 4.5" [(ngModel)]="pdetails.ctc">
                 <div class="text-danger"  *ngIf="form.controls['ctc'] && form.controls['ctc'].hasError('required') && form.controls['ctc'].touched">CTC is required</div>
                 <div class="text-danger"  *ngIf="form.controls['ctc'] && form.controls['ctc'].hasError('pattern')">Use Integer or Real numbers</div>
 
             </div>
             <div class="col-md-6">
                 <label>Description<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="description" placeholder="Minimum 10 characters">
+                <input type="text" class="form-control" formControlName="description" placeholder="Minimum 10 characters" [(ngModel)]="pdetails.description">
                 <div class="text-danger"  *ngIf="form.controls['description'] && form.controls['description'].hasError('required') && form.controls['description'].touched">Description is required</div>
 
             </div>
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Registartion Link<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="registration_link" placeholder="Example www.abc.com or https://abc.in">
+                <input type="text" class="form-control" formControlName="registration_link" placeholder="Example www.abc.com or https://abc.in" [(ngModel)]="pdetails.registration_link">
                 <div class="text-danger"  *ngIf="form.controls['registration_link'] && form.controls['registration_link'].hasError('required') && form.controls['registration_link'].touched">Registration link is required</div>
                 <div class="text-danger"  *ngIf="form.controls['registration_link'] && form.controls['registration_link'].hasError('pattern')">Please enter correct link</div>
 
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-6">
                 <label>Registartion Start Date<span id="s">*</span></label>
-                <input type="date" class="form-control" formControlName="registration_start_date" (change)="getMinDate(form.controls['registration_start_date'].value)">
+                <input type="date" class="form-control" formControlName="registration_start_date" (change)="getMinDate(form.controls['registration_start_date'].value)" [(ngModel)]="pdetails.registration_start_date">
                 <div class="text-danger"  *ngIf="form.controls['registration_start_date'] && form.controls['registration_start_date'].hasError('required') && form.controls['registration_start_date'].touched">Registration start date is required</div>
 
             </div>
@@ -49,19 +49,18 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Registartion End Date<span id="s">*</span></label>
-                <input type="date" [min]='min_date' class="form-control" formControlName="registration_end_date">
+                <input type="date" [min]='min_date' class="form-control" formControlName="registration_end_date" [(ngModel)]="pdetails.registration_end_date">
                 <div class="text-danger"  *ngIf="form.controls['registration_end_date'] && form.controls['registration_end_date'].hasError('required') && form.controls['registration_end_date'].touched">Registration end date is required</div>
 
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <label>Upload Job Description/Email Copy<span id="s">*</span></label>
-                <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf" formControlName="job_description_file">
+                <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf" formControlName="job_description_file" [(ngModel)]="pdetails.job_description_file">
                 <div class="text-danger"  *ngIf="form.controls['job_description_file'] && form.controls['job_description_file'].hasError('required') && form.controls['job_description_file'].touched">Registration end date is required</div>
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            </div> -->
+       
+            <!-- <div class="col-md-6">
                 <div class="form-chek">
                     <label>Please select Eligible Departments<span id="s">*</span></label><br>
                     <span *ngFor="let d of dep">
@@ -73,7 +72,7 @@
      
                 </div>
              
-              </div>
+            </div> -->
         </div>
       
        
@@ -86,4 +85,49 @@
         
 
     </form>
+    <div class="row">
+    <div class="col-md-6">
+        <h1>Eligible Departments for this Placement</h1>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Department</th>
+                <th scope="col"></th>
+             
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of edep">
+                <th scope="row">{{d.department}}</th>
+                <td><button class="btn btn-danger" (click)="delete(d.departmentid)">Delete</button></td>
+                
+              </tr>
+            </tbody>
+          </table>
+        <h3 >
+             
+        </h3>
+
+        <h1>Add Departments</h1>
+        <div class="form-chek">
+            <label>Select Departments<span id="s">*</span></label><br>
+            <span *ngFor="let d of dep">
+            <input type="checkbox" class="form-check-input" id="{{d.departmentid}}" value="{{d.departmentid}}" (change)="getDeps($event)">
+            <label class="form-check-label">{{d.department}}</label>
+
+            </span>
+         
+
+        </div>
+        <button class="btn btn-primary" (click)="addEligibleDep()">Add</button>
+    </div>
+    <div class="col-md-6">
+        <h1>Change Job Description Document</h1>
+        <label>Upload Job Description/Email Copy<span id="s">*</span></label>
+        <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf">
+        <h3 class="text-danger">{{isfile}}</h3>
+        <button class="btn btn-primary" (click)="upload()">Upload</button>
+        
+    </div>
+</div>
 </div>

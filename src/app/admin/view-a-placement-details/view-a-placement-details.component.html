@@ -1,0 +1,30 @@
+<div class="container">
+    <div>
+          
+        <h5></h5>
+        <h6 class="text-danger"></h6>
+
+        <div class="card">
+          <div class="card-header">
+            <h1>{{pdetails.companyname}}</h1>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">{{pdetails.designantion}}</h2>
+            <p class="card-text">{{pdetails.description}}</p>
+            <h3>CTC:{{pdetails.ctc}}LPA</h3>
+            <h3>Registration {{pdetails.registration_start_date}} to {{pdetails.registration_end_date}}</h3>
+            <div>
+              <span style="margin-right: 10px;">
+                <a class="btn btn-success" (click)="download(pdetails.job_description_file)">Download Job Description</a>
+              </span>
+             
+              <a style="margin-right: 10px;" class="btn btn-primary" (click)="goto(pdetails.registration_link)">Registration Link</a>
+              <a style="margin-right: 10px;" class="btn btn-secondary" (click)="updatePage()">Update Details</a>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+</div>
