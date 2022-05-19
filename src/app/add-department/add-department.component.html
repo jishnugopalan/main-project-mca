@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Add Department</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <div class="col-md-6">
+            <label>Department</label>
+            <input class="form-control" formControlName="department">
+            <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('required') && form.controls['department'].touched">Department is required</div>
+            <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('minlength')">Department should have minimum length 2</div>
+            <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('pattern')">Please input a valid department</div>
+           <div class="text-danger">{{error}}</div>
+
+        </div>
+        <div class="col-md-6">
+            <button type="submit" [disabled]="!form.valid" class="btn btn-success">Add</button>
+        </div>
+
+    </form>
+    <h1>Add Batches</h1>
+    <form [formGroup]="batchForm" (ngSubmit)="onSubmit2()" >
+        <div class="col-md-6">
+            <label>Department</label>
+            <select class="form-control" formControlName="departmentid">
+                <option value disabled selected>Select Department</option>
+                <option value="{{d.departmentid}}" *ngFor="let d of dep">{{d.department}}</option>
+            </select>
+            <div class="text-danger"  *ngIf="departmentid && departmentid.invalid && departmentid.touched">Please select a department</div>
+        </div>
+        <div class="col-md-6">
+            <label>Batch</label>
+            <input class="form-control" formControlName="batchname">
+            <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('required') && batchForm.controls['batchname'].touched">Batch is required</div>
+            <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('minlength')">Batch should have minimum length 2</div>
+            <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('pattern')">Please input a valid batch</div>
+            <div class="text-danger">{{error2}}</div>
+        </div>
+        
+        <div class="col-md-6">
+            <button type="submit" [disabled]="!batchForm.valid" class="btn btn-success">Add</button>
+        </div>
+
+    </form>
+    
+</div>

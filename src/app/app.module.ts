@@ -23,6 +23,7 @@ import { ViewPlacementDetailsComponent } from './admin/view-placement-details/vi
 import { ViewAPlacementDetailsComponent } from './admin/view-a-placement-details/view-a-placement-details.component';
 import { UpdatePlacementDetailsComponent } from './admin/update-placement-details/update-placement-details.component';
 import { AddRepComponent } from './admin/add-rep/add-rep.component';
+import { AddDepartmentComponent } from './add-department/add-department.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AddRepComponent } from './admin/add-rep/add-rep.component';
     ViewAPlacementDetailsComponent,
     UpdatePlacementDetailsComponent,
     AddRepComponent,
+    AddDepartmentComponent,
     
   ],
   imports: [

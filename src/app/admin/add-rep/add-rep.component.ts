@@ -13,6 +13,9 @@ export class AddRepComponent implements OnInit {
 dep:any
 department=""
 users:any=[]
+rep:any=[]
+data:any=[]
+deps=""
   constructor(private service:RegistrationServiceService,private adminService:AdminService,private router:Router) { }
   form=new FormGroup({
     departmentid:new FormControl('',[
@@ -49,6 +52,30 @@ users:any=[]
       console.log(res)
       this.dep=res
       
+    })
+    this.adminService.getAllDepartmentRep().subscribe((res:any)=>{
+      console.log(res)
+      let x=[]
+      for(let i=0;i<res.length;i++){
+        x.push({"id":res[i][0],"fullname":res[i][1],"email":res[i][4],"phone":res[i][3]})
+
+      }
+      this.rep=x
+      console.log(this.rep)
+      for(let i=0;i<this.rep.length;i++){
+        let y=[]
+        this.adminService.getDepartmentByUserid(this.rep[i].id).subscribe((res:any)=>{
+          console.log("Departments")
+          console.log(res[0])
+          this.rep[i].department=res[0]
+          
+        //this.data.push({"fullname":this.rep[i].fullname,"department":res[0]})
+         
+        })
+        
+        
+      }
+     console.log(this.rep)
     })
   }
 

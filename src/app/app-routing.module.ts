@@ -10,6 +10,7 @@ import { ViewPlacementDetailsComponent } from './admin/view-placement-details/vi
 import { ViewAPlacementDetailsComponent } from './admin/view-a-placement-details/view-a-placement-details.component';
 import { UpdatePlacementDetailsComponent } from './admin/update-placement-details/update-placement-details.component';
 import { AddRepComponent } from './admin/add-rep/add-rep.component';
+import { AddDepartmentComponent } from './add-department/add-department.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'view-placement-details',component:ViewPlacementDetailsComponent},
   {path:'placement-details',component:ViewAPlacementDetailsComponent},
   {path:'update-placement-details',component:UpdatePlacementDetailsComponent},
-  {path:'add-rep',component:AddRepComponent}
+  {path:'add-rep',component:AddRepComponent},
+  {path:'add-department',component:AddDepartmentComponent}
 
 
 
@@ -38,5 +40,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents=[RegistrationComponent,AddPlacementDetailsComponent,StudentHomeComponent,AdminHomeComponent,AddPlacementDetailsComponent,ViewPlacementDetailsComponent,
-  UpdatePlacementDetailsComponent,AddRepComponent]
+  UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent]
 

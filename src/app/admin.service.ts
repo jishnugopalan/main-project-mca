@@ -87,6 +87,16 @@ pid:any
     );
   }
 
+  public deletePlacementDetailsById(_pid:any){
+    return this.http.delete("http://localhost:8080/delete-placementdetails",{
+      params:{
+        pid:_pid
+      }
+    }
+    
+    );
+  }
+
   public viewEligibleDepartmentByPid(_pid:any){
     return this.http.get("http://localhost:8080/view-eligible-department-by-pid",{
       params:{
@@ -125,6 +135,24 @@ pid:any
     
     );
   }
+  public getAllDepartmentRep(){
+    return this.http.get("http://localhost:8080/admin/get-all-department-rep")
+    
+  }
+  public getDepartmentByUserid(_id:any){
+    return this.http.get("http://localhost:8080/admin/get-department-by-userid",{
+      params:{
+        id:_id
+      }
+    })
+    
+  }
+  public addDepartment(department:any):Observable<any>{
+      return this.http.post("http://localhost:8080/adddepartment",department)
+  }
+  public addBatch(batch:any):Observable<any>{
+    return this.http.post("http://localhost:8080/addbatch",batch)
+}
   
 
 }

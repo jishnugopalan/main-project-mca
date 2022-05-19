@@ -18,16 +18,20 @@ export class ViewPlacementDetailsComponent implements OnInit {
    this.adminService.pid=pid
    this.router.navigateByUrl("/placement-details")
   }
-
+  delete(pid:any){
+  this.adminService.deletePlacementDetailsById(pid).subscribe((res:any)=>{
+    console.log(res)
+    alert("Deleted successfully")
+    window.location.reload()
+  })
+  }
   ngOnInit(): void {
     this.adminService.viewAllPlacementDetails().subscribe((res:any)=>{
       console.log(res)
       this.pdetails=res
     })
     
-    $(document).ready( function () {
-      $('#table_id').DataTable();
-    });
+   
   }
 
 }
