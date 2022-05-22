@@ -11,6 +11,9 @@ import { ViewAPlacementDetailsComponent } from './admin/view-a-placement-details
 import { UpdatePlacementDetailsComponent } from './admin/update-placement-details/update-placement-details.component';
 import { AddRepComponent } from './admin/add-rep/add-rep.component';
 import { AddDepartmentComponent } from './add-department/add-department.component';
+import { MystudentsComponent } from './student/mystudents/mystudents.component';
+import { ViewStudentDetailsComponent } from './student/view-student-details/view-student-details.component';
+import { CreateResumeComponent } from './student/create-resume/create-resume.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -23,7 +26,10 @@ const routes: Routes = [
   {path:'placement-details',component:ViewAPlacementDetailsComponent},
   {path:'update-placement-details',component:UpdatePlacementDetailsComponent},
   {path:'add-rep',component:AddRepComponent},
-  {path:'add-department',component:AddDepartmentComponent}
+  {path:'add-department',component:AddDepartmentComponent},
+  {path:'mystudents',component:MystudentsComponent},
+  {path:'view-student-details',component:ViewStudentDetailsComponent},
+  {path:'create-resume',component:CreateResumeComponent}
 
 
 
@@ -40,5 +46,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents=[RegistrationComponent,AddPlacementDetailsComponent,StudentHomeComponent,AdminHomeComponent,AddPlacementDetailsComponent,ViewPlacementDetailsComponent,
-  UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent]
+  UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent,MystudentsComponent,ViewStudentDetailsComponent,CreateResumeComponent]
 

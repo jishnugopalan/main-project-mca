@@ -59,6 +59,7 @@
         <h2 class="text-center">Placement Updates</h2>
       </div>
     </div>
+    
       
            
         
@@ -71,4 +72,12 @@
     
     <!-- <img [src]="photo"> -->
 </div>
-<app-add-student-details *ngIf="!isapproved"></app-add-student-details>
+<div  *ngIf="!isapproved">
+  <div class="container">
+    <div class="alert alert-danger text-center" role="alert">
+      <h2>Sorry, you are not verfied by department Representative.Please wait or contact your Department Placement Representative</h2>
+    </div>
+  </div>
+
+</div>
+<app-add-student-details *ngIf="!isFilled"></app-add-student-details>

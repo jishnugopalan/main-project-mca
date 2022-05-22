@@ -1,0 +1,20 @@
+<h1 class="text-center">My Students</h1>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name </th>
+            <th scope="col"></th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of student">
+            
+            <td>{{s.fullname}}</td>
+            <td><button class="btn btn-success" (click)="getStudent(s.userid)">View Details</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>

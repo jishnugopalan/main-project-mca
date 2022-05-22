@@ -24,6 +24,9 @@ import { ViewAPlacementDetailsComponent } from './admin/view-a-placement-details
 import { UpdatePlacementDetailsComponent } from './admin/update-placement-details/update-placement-details.component';
 import { AddRepComponent } from './admin/add-rep/add-rep.component';
 import { AddDepartmentComponent } from './add-department/add-department.component';
+import { MystudentsComponent } from './student/mystudents/mystudents.component';
+import { ViewStudentDetailsComponent } from './student/view-student-details/view-student-details.component';
+import { CreateResumeComponent } from './student/create-resume/create-resume.component';
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import { AddDepartmentComponent } from './add-department/add-department.componen
     UpdatePlacementDetailsComponent,
     AddRepComponent,
     AddDepartmentComponent,
+    MystudentsComponent,
+    ViewStudentDetailsComponent,
+    CreateResumeComponent,
     
   ],
   imports: [

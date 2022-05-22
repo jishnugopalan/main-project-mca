@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="card text-center bg-light">
+        <div style="font-size: larger;font-weight: bold;">
+          <img [src]="photo" class="rounded-circle shadow-4" style="width: 150px; height: 160px;"
+          alt="Avatar" />
+          <h2 class="text-primary">{{profile.fullname}}</h2>
+         <span class="badge bg-primary" *ngIf="stddetails.isverified">verified</span><br>
+          <span>{{batchname}}</span><br>
+         <span>{{department}}</span> 
+         
+      </div>
+
+      </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Address</h2>
+        <h3 class="text-left">
+            {{stddetails.housename}}<br>
+            {{stddetails.place}}<br>
+            {{stddetails.district}}<br>
+            {{stddetails.state}}<br>
+            {{stddetails.country}}<br>
+            {{stddetails.pincode}}<br>
+        </h3>
+    </div>
+    <div class="col-md-3">
+        <h2>Contact Details</h2>
+        <h3>{{profile.phone}}<br>
+            {{profile.username}}<br>
+            
+        </h3>
+    </div>
+    <div class="col-md-3">
+        <h2>Other Details</h2>
+        <h3>
+           
+            Date of Birth:{{stddetails.date_of_birth}}<br>
+            Gender:{{stddetails.gender}}<br>
+        </h3>
+    </div>
+    
+</div>
+<div class="row">
+<div class="col-md-6">
+    <h2>Academic Details</h2>
+    <h3>
+        Register Number:{{stddetails.registration_number}}<br>
+        Academic Starting Year:{{stddetails.academic_starting_year}}<br>
+        Academic Starting Ending:{{stddetails.academic_ending_year}}<br>
+        SSLC Percentage:{{stddetails.sslcpercentage}}%<br>
+        Plus Two Percentage{{stddetails.plustwopercentage}}%<br>
+        UG Percentage{{stddetails.ugpercentage}}%
+
+
+
+    </h3>
+</div>
+<div class="col-md-6">
+    <h2>Documents</h2>
+    <button  style="margin:1rem;" class="btn btn-success btn-sm" (click)="showIDProof(stddetails.idproof)">Show ID Proof</button>
+    <button class="btn btn-success btn-sm" (click)="showIDProof(stddetails.sslc)">Show SSLC</button><br><br>
+     <button style="margin:1rem;" class="btn btn-success btn-sm" (click)="showIDProof(stddetails.plustwo)">Show Plus Two</button>
+    <button class="btn btn-success btn-sm" (click)="showIDProof(stddetails.ug)">Show UG</button>
+
+</div>
+</div>
+<div class="col-md-12 text-center">
+    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="verified()">Mark as Verfied</button>
+</div>
+<hr>
+<form [formGroup]="student" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <h2 class="text-center text-primary">Update Academic Details</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Register Number</label>
+            <input type="text" class="form-control" formControlName="registration_number" id="registration_number" [(ngModel)]="stddetails.registration_number">
+            <div class="text-danger"  *ngIf="student.controls['registration_number'] && student.controls['registration_number'].hasError('required') && student.controls['registration_number'].touched">Register number is required</div>
+            <div class="text-danger"  *ngIf="student.controls['registration_number'].hasError('minlength') || student.controls['registration_number'].hasError('maxlength')">Please enter correct register number</div>
+        </div>
+        <div class="col-md-4">
+            <label>Academic Staring Year</label>
+            <input type="date" class="form-control" formControlName="academic_starting_year" [(ngModel)]="stddetails.academic_starting_year">
+        </div>
+        <div class="col-md-4">
+            <label>Academic Ending Year</label>
+            <input type="date" class="form-control" formControlName="academic_ending_year" [(ngModel)]="stddetails.academic_ending_year">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>SSLC Percentage</label>
+            <input type="number" class="form-control" formControlName="sslcpercentage" max="100" [(ngModel)]="stddetails.sslcpercentage">
+            <div class="text-danger"  *ngIf="student.controls['sslcpercentage'] && student.controls['sslcpercentage'].hasError('required') && student.controls['sslcpercentage'].touched">SSLC Percentage is required</div>
+        </div>
+        <div class="col-md-4">
+            <label>Plustwo Percentage</label>
+            <input type="number" class="form-control" formControlName="plustwopercentage" max="100" [(ngModel)]="stddetails.plustwopercentage">
+            <div class="text-danger"  *ngIf="student.controls['plustwopercentage'] && student.controls['plustwopercentage'].hasError('required') && student.controls['plustwopercentage'].touched">Plustwo Percentage is required</div>
+        </div>
+        
+        
+        <div class="col-md-4">
+            <label>UG Percentage</label>
+            <input type="number" class="form-control" formControlName="ugpercentage" max="100" [(ngModel)]="stddetails.ugpercentage">
+            <div class="text-danger"  *ngIf="student.controls['ugpercentage'] && student.controls['ugpercentage'].hasError('required') && student.controls['ugpercentage'].touched">UG Percentage is required</div>
+        </div>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-md-4">
+            <label>SSLC</label>
+            <input type="file" class="form-control" (change)="selectFile1($event)" accept="application/pdf" formControlName="sslc">
+            <div class="text-danger"  *ngIf="student.controls['sslc'] && student.controls['sslc'].hasError('required') && student.controls['sslc'].touched">SSLC certificate is required</div>
+        </div>
+
+        <div class="col-md-4">
+            <label>Plus Two</label>
+            <input type="file"  class="form-control" (change)="selectFile2($event)" accept="application/pdf" formControlName="plustwo">
+            <div class="text-danger"  *ngIf="student.controls['plustwo'] && student.controls['plustwo'].hasError('required') && student.controls['plustwo'].touched">Plus Two certicicate is required</div>
+        </div>
+
+        <div class="col-md-4">
+            <label>UG</label>
+            <input type="file"  class="form-control" (change)="selectFile3($event)" accept="application/pdf" formControlName="ug">
+            <div class="text-danger"  *ngIf="student.controls['ug'] && student.controls['ug'].hasError('required') && student.controls['ug'].touched">UG certificate is required</div>
+        </div>
+    
+      </div> -->
+
+
+    <div class="col-md-6">
+        <button type="submit" [disabled]="!student.valid" class="btn btn-primary">Submit</button>
+    </div>
+
+
+</form>
+</div>

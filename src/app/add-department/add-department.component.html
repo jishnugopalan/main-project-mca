@@ -15,6 +15,28 @@
         </div>
 
     </form>
+    <h3>Delete Departments</h3>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+           
+            <th scope="col">Department</th>
+            <th></th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of dep">
+          
+            <td>{{d.department}}</td>
+           <td><button class="btn btn-danger" (click)="delete(d.departmentid)">Delete</button></td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+
+
     <h1>Add Batches</h1>
     <form [formGroup]="batchForm" (ngSubmit)="onSubmit2()" >
         <div class="col-md-6">
@@ -39,5 +61,31 @@
         </div>
 
     </form>
+    <div class="col-md-6">
+        <h3>Delete Batch</h3>
+        <select class="form-control"  #device (change)="getBatch(device.value)">
+            <option value disabled selected>Select Department</option>
+            <option  *ngFor="let d of dep" value="{{d.departmentid}}">{{d.department}}</option>
+        </select>
+    </div>
+    <table class="table table-striped">
+
+        <thead>
+          <tr>
+           
+            <th scope="col">Batch</th>
+            <th></th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of batch">
+          
+            <td>{{d.batchname}}</td>
+           <td><button class="btn btn-danger" (click)="deleteBatch(d.batchid)">Delete</button></td>
+          </tr>
+         
+        </tbody>
+      </table>
     
 </div>

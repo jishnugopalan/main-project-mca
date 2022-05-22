@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'myapp';
   isuser:boolean=false
+  isrep:boolean=false
   private roles=[];
   isLoggedIn = false;
   isadmin:boolean=false
@@ -35,11 +35,13 @@ export class AppComponent {
       }
       if(this.roles[0]=="student" && this.roles[1]=="representative"){
         this.isuser=true
+        this.isrep=true
         this.router.navigateByUrl("/student-home")
       }
       
       if(this.roles[0]=="admin"){
         this.isuser=false
+        this.isrep=false
         this.isadmin=true
         this.router.navigateByUrl("/admin-home")
       }

@@ -18,6 +18,7 @@ fullname:any
 department=""
 batchname=""
 placementDetails:any
+isFilled=false
   constructor(private router: Router,private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer) { }
 
   goto(url:any){
@@ -46,9 +47,14 @@ placementDetails:any
     let userid=user.id;
     this.studentservice.viewstudentdetailsbyid(userid).subscribe(
       (data:any)=>{
-        this.isapproved=true;
-        console.log(data)
+        this.isFilled=true
+        console.log("is verified",data.isverified)
+        if(data.isverified==true){
+          this.isapproved=true;
+        }
         
+        console.log(data)
+        this.studentservice.departmentid=data.departmentid
         this.studentservice.getDepartmentById(data.departmentid).subscribe((res:any)=>{
           this.department=res.department
 
@@ -82,7 +88,7 @@ placementDetails:any
       },
       error=>{
         console.log(error.error.message)
-
+        this.isFilled=false
       }
     )
 

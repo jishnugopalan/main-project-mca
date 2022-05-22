@@ -1,3 +1,4 @@
+import { StudentServiceService } from './../student-service.service';
 import { RegistrationServiceService } from 'src/app/registration-service.service';
 import { AdminService } from 'src/app/admin.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,7 +13,9 @@ export class AddDepartmentComponent implements OnInit {
 error=""
 error2=""
 dep:any
-  constructor(private adminService:AdminService,private service:RegistrationServiceService) { }
+batch:any
+componentProperty:any
+  constructor(private adminService:AdminService,private service:RegistrationServiceService,private studentService:StudentServiceService) { }
   form=new FormGroup({
     department:new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern("^[a-zA-Z ]*$")])
   })
@@ -31,6 +34,8 @@ dep:any
       console.log(res)
       this.error=""
       alert("Department added successfully")
+    this.ngOnInit()
+
     },error=>{
       console.log(error)
       console.log(error.error.message)
@@ -43,9 +48,40 @@ dep:any
       console.log(res)
       this.error2=""
       alert("Batch added successfully")
+      
+    this.ngOnInit()
     },error=>{
       this.error2=error.error.message
       console.log(error.error.message)
+    })
+  }
+  
+  delete(_departmentid:any){
+    console.log(_departmentid)
+    this.adminService.deleteDepartment(_departmentid).subscribe((res:any)=>{
+      console.log(res)
+      alert("Department deleted successfully")
+
+    this.ngOnInit()
+
+    })
+  }
+  deleteBatch(_batchid:any){
+    console.log(_batchid)
+    this.adminService.deleteBatch(_batchid).subscribe((res:any)=>{
+      console.log(res)
+      this.batch=null
+      alert("Batch deleted successfully")
+
+    this.ngOnInit()
+    })
+  }
+  getBatch(deviceValue:any){
+    
+    console.log(deviceValue)
+    this.studentService.getBatchById(deviceValue).subscribe((res:any)=>{
+      console.log(res)
+      this.batch=res
     })
   }
   ngOnInit(): void {
@@ -53,6 +89,7 @@ dep:any
       console.log(res)
       this.dep=res
     })
+  
   }
 
 }

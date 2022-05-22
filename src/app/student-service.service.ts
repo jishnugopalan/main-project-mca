@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class StudentServiceService {
+  departmentid:any
+  userid:any
 
   constructor(private http:HttpClient) { }
   public viewstudentdetailsbyid(_userid:any):Observable<any>{
@@ -54,6 +56,26 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
     
     );
   }
+
+  public updatestudentdetails(userDetails:any):Observable<any>{
+
+   
+  let body = new FormData();
+  body.append('userid', userDetails.userid);
+  body.append('registration_number',userDetails.registration_number,);
+  body.append('sslcpercentage',userDetails.sslcpercentage)
+  body.append('plustwopercentage',userDetails.plustwopercentage)
+  body.append('ugpercentage',userDetails.ugpercentage)
+  body.append('academic_starting_year',userDetails.academic_starting_year)
+  body.append('academic_ending_year',userDetails.academic_ending_year)
+  
+  
+    const myheader = new HttpHeaders().set('Content-Type', 'form-data')
+  
+      return this.http.post("http://localhost:8080/update-student-details",body
+      
+      );
+    }
 
   public getCountries(){
     return this.http.get("https://countriesnow.space/api/v0.1/countries/states")
@@ -111,6 +133,24 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
       }
     })
   }
-
+  public getAllStudentDetailsByDepartmentid(_departmentid:any){
+    return this.http.get("http://localhost:8080/get-all-students-by-departmentid",{
+      params:{
+        departmentid:_departmentid
+      }
+    })
+  }
+  public getUserData(_userid:any){
+    return this.http.get("http://localhost:8080/get-user-data",{
+      params:{
+        id:_userid
+      }
+    })
+  }
+  public VerifyStudent(_userid:any){
+    let body = new FormData();
+    body.append("userid",_userid)
+    return this.http.post("http://localhost:8080/verify-student",body)
+  }
 
 }

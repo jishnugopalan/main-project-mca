@@ -153,6 +153,19 @@ pid:any
   public addBatch(batch:any):Observable<any>{
     return this.http.post("http://localhost:8080/addbatch",batch)
 }
-  
+public deleteDepartment(_departmentid:any){
+  return this.http.delete("http://localhost:8080/delete-department",{
+    params:{
+      departmentid:_departmentid
+    }
+  })
+}
+public deleteBatch(_batchid:any){
+  return this.http.delete("http://localhost:8080/delete-batch",{
+    params:{
+      batchid:_batchid
+    }
+  })
+}
 
 }
