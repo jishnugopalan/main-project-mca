@@ -152,5 +152,15 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
     body.append("userid",_userid)
     return this.http.post("http://localhost:8080/verify-student",body)
   }
+  public createResume(resume:any):Observable<any>{
+     return this.http.post("http://localhost:8080/add-resume",resume)
+  }
+  public getResume(_userid:any){
+    return this.http.get("http://localhost:8080/get-resume-details",{
+      params:{
+        userid:_userid
+      }
+    })
+ }
 
 }

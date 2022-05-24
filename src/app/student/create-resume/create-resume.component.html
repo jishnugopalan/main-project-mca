@@ -2,13 +2,58 @@
     <h1 class="text-center">Create Resume</h1>
     <div class="row">
         <div class="col-md-6">
+            <h3>Short Summary</h3>
+            <div class="form-group">
+                <textarea class="form-control" id="summary" rows="5" (input)="getCount()"></textarea>
+              </div>
+              <button class="btn btn-primary btn-sm" (click)="addSummary()">Add</button>
+        </div>
+        <div class="col-md-6">
+            <h3>
+              {{summary}}
+            </h3>
+            
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Education Details</h3>
+            <form [formGroup]="educationForm" (ngSubmit)="addEducation()" >
+                <input type="text" placeholder="School/College" class="form-control" formControlName="school_or_college">
+                <input type="text" placeholder="Strem" class="form-control" formControlName="stream">
+                <input type="number" min="1990" placeholder="Starting year" class="form-control" formControlName="year_start">
+                <input type="number" min="1990" placeholder="Ending Year" class="form-control" formControlName="year_end">
+                <input type="number" max="100" placeholder="Score in percentage" class="form-control" formControlName="score">
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="!educationForm.valid">Add</button>
+    
+            </form>
+           
+
+
+
+        </div>
+        <div class="col-md-6">
+            <p *ngFor="let d of education;index as i">
+                {{d.school_or_college}}<br>
+                {{d.stream}}<br>
+                {{d.year_start}} - {{d.year_end}}<br>
+                {{d.score}}
+                <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteEducation(i)">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <h3>Skills</h3>
             <input type="text" id="skill" class="form-control" on>
             <button class="btn btn-primary btn-sm" (click)="addSkill()">Add</button>
         </div>
         <div class="col-md-6">
             <h3>
-                <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of skills" >{{d.skills}}
+                <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of skills" >{{d.skill}}
                     <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteSkill(d.skills)">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -17,4 +62,83 @@
             
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Academic Projects</h3>
+            <div class="form-group">
+                <textarea class="form-control" id="project" rows="7"></textarea>
+              </div>
+              <button class="btn btn-primary btn-sm" (click)="addProject()">Add</button>
+        </div>
+        <div class="col-md-6">
+            <h3>
+                <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of projects" >{{d.project}}
+                    <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteProjects(d.projects)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </span>
+            </h3>
+            
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Cerifications</h3>
+            <input type="text" id="certificate" class="form-control" placeholder="Small description about certificate">
+            <button class="btn btn-primary btn-sm" (click)="addCertificate()">Add</button>
+        </div>
+        <div class="col-md-6">
+            <h3>
+                <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of certifications" >{{d.certificate}}
+                    <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteCertificate(d.certificate)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </span>
+            </h3>
+            
+        </div>
+    </div>
+    <div class="row">
+        
+            <div class="col-md-6">
+                <h3>Experience</h3>
+                <input type="text" id="experience" class="form-control" placeholder="Small description about experience">
+                <button class="btn btn-primary btn-sm" (click)="addExperience()">Add</button>
+            </div>
+
+        
+        <div class="col-md-6">
+            <h3>
+                <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of experiences" >{{d.experience}}
+                    <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteExperience(d.experience)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </span>
+            </h3>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Hobbies</h3>
+            <input type="text" id="hobbies" class="form-control">
+            <button class="btn btn-primary btn-sm" (click)="addHobbies()">Add</button>
+        </div>
+
+    
+    <div class="col-md-6">
+        <h3>
+            <span  class="badge bg-primary" style="margin:1rem;" *ngFor="let d of hobbies" >{{d.hobby}}
+                <button type="button" class="btn btn-danger btn-sm close" aria-label="Close" (click)="deleteHobbies(d.hobby)">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </span>
+        </h3>
+        
+    </div>
+
+    </div>
+    <button class="btn btn-success" (click)="createResume()">Create Resume</button>
+    
 </div>

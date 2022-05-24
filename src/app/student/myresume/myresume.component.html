@@ -1,0 +1,184 @@
+<div id="resume" class="continer">
+    <div id="wrapper">
+ 
+        <!-- Begin Content Area -->
+        <div id="content">
+         
+        <!-- Begin Header -->
+        <header>
+         
+        <!-- Begin Contact Section -->
+        <section id="contact-details">
+         
+        <!-- Begin Profile Image Section -->
+        <div class="header_1">
+        <img [src]="photo" width="250" height="250" alt="Your Name" />
+        </div>
+        <!-- End Profile Image Section -->
+         
+        <!-- Begin Profile Information Section -->
+        <div class="header_2">
+         
+        <h1><span>{{fullname}}</span></h1>
+        <!-- <h3>Web Developer / Designer</h3> -->
+         <br><br>
+        <ul class="info_1">
+        <li class="address">{{student.housename}}</li>
+        <li class="address">{{student.place}}</li>
+        <li class="address">{{student.district}}</li>
+        <li class="address">{{student.state}},{{student.country}},pin:{{student.pincode}}</li>
+      
+        </ul>
+        <ul class="info_2">
+            <li class="address">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                  </svg> {{email}}
+            </li>
+            <li class="address">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                  </svg> {{phone}}
+            </li>
+        </ul>
+         
+        <!-- <ul class="info_2">
+        <li class="phone">(000) 000-0000</li>
+        <li class="email"><a href="mailto:your-email@gmail.com">your-email@gmail.com</a></li>
+        <li class="site_url"><a href="http://www.webcodepro.net/about.php" title="www.your-website.com">www.your-website.com</a></li>
+        <li class="twitter"><a href="http://twitter.com/twitter-screen-name" title="Follow Me on Twitter">@twitter-screen-name</a></li>
+        </ul> -->
+         
+        </div>
+        <!-- End Profile Information Section -->
+         
+        </section>
+        <!-- End Contact Section -->
+         
+        </header>
+        <!-- End Header -->
+         
+        <div class="clear">&nbsp;</div>
+         
+        <!-- Begin Profile Section -->
+        <dl>
+        <dt>Profile:</dt>
+        <dd>
+         
+        <section class="summary">
+        {{resume.summary.summary}}
+        </section>
+         
+        </dd>
+        </dl>
+        <!-- End Profile Section -->
+        <div class="clear">&nbsp;</div>
+          <!-- Begin Education Section -->
+          <dl>
+            <dt>Education:</dt>
+            <dd>
+             
+            <section id="education" *ngFor="let d of resume.education">
+             
+            <p class="bus1">{{d.school_or_college}}</p>
+            {{d.stream}}
+            <p *ngIf="d.score!=0">{{d.score}}%</p>
+            <p>{{d.year_start}} &#45; {{d.year_end}}</p>
+           
+             
+            </section>
+             
+            </dd>
+            </dl>
+            <!-- End Education Section -->
+         
+        <div class="clear" *ngIf="resume.skills.length!=0">&nbsp;</div>
+         
+        <!-- Begin Skills Section -->
+         
+        <dl *ngIf="resume.skills.length!=0">
+        <dt>Skills:</dt>
+        <dd>
+         
+        <section id="skills">
+        <ul class="list1">
+            <span *ngFor="let d of resume.skills">{{d.skill}},</span>
+        
+        
+        </ul>
+        </section>
+         
+        </dd>
+        </dl>
+         
+        <!-- End Skills Section -->
+         
+        <div class="clear" *ngIf="resume.experiences.length!=0">&nbsp;</div>
+        <dl *ngIf="resume.experiences.length!=0">
+        <dt>Experience:</dt>
+        <dd>
+        <section id="experience">
+        <p *ngFor="let d of resume.experiences">
+         {{d.experience}}
+        </p>
+        </section>
+        </dd>
+        </dl>
+        <div class="clear">&nbsp;</div>
+
+        <dl *ngIf="resume.projects.length!=0">
+        <dt>Projects:</dt>
+        <dd>
+        <section id="experience">
+        <p *ngFor="let d of resume.projects">
+         {{d.project}}
+        </p>
+        </section>
+        </dd>
+        </dl>
+        <div class="clear" *ngIf="resume.certifications.length!=0">&nbsp;</div>
+        <dl *ngIf="resume.certifications.length!=0">
+            <dt>Certifications:</dt>
+            <dd>
+             
+            <section id="skills">
+            <ul class="list1">
+                <span *ngFor="let d of resume.certifications">{{d.certificate}},</span>
+            
+            
+            </ul>
+            </section>
+             
+            </dd>
+            </dl>
+         
+        <div class="clear" *ngIf="resume.hobbies.length!=0">&nbsp;</div>
+
+        <dl *ngIf="resume.hobbies.length!=0">
+            <dt>Hobbies:</dt>
+            <dd>
+             
+            <section id="skills">
+            <ul class="list1">
+                <span *ngFor="let d of resume.hobbies">{{d.hobby}},</span>
+            
+            
+            </ul>
+            </section>
+             
+            </dd>
+            </dl>
+         
+        <!-- Begin Footer -->
+        
+        <!-- End Footer -->
+         
+        </div>
+        <!-- End Content -->
+         
+        </div>
+
+</div>
+<div class="container">
+    <button (click)="exportAsPDF()" class="btn btn-success">Download Resume</button>
+</div>
