@@ -28,6 +28,7 @@ import { MystudentsComponent } from './student/mystudents/mystudents.component';
 import { ViewStudentDetailsComponent } from './student/view-student-details/view-student-details.component';
 import { CreateResumeComponent } from './student/create-resume/create-resume.component';
 import { MyresumeComponent } from './student/myresume/myresume.component';
+import { AddComplaintComponent } from './student/add-complaint/add-complaint.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { MyresumeComponent } from './student/myresume/myresume.component';
     ViewStudentDetailsComponent,
     CreateResumeComponent,
     MyresumeComponent,
+    AddComplaintComponent,
     
   ],
   imports: [

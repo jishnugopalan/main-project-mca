@@ -162,5 +162,15 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
       }
     })
  }
+ public addComplaint(complaint:any):Observable<any>{
+ return this.http.post("http://localhost:8080/add-complaint",complaint)
+ }
+ public getComplaintByUserid(_userid:any){
+  return this.http.get("http://localhost:8080/get-complaints",{
+    params:{
+      userid:_userid
+    }
+  })
+ }
 
 }

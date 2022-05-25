@@ -4,14 +4,14 @@
     <form [formGroup]="form">
         <div class="row">
         <div class="col-md-6">
-            <h3>Select Department</h3>
+         
             <select class="form-control" (change)="getStudents()" formControlName="departmentid">
                 <option value disabled selected>Select Department</option>
                 <option value="{{d.departmentid}}" *ngFor="let d of dep">{{d.department}}</option>
             </select>
         </div>
         <div class="col-md-6">
-            <h3>Select Student</h3>
+            
             <select class="form-control" formControlName="id">
                 <option value disabled selected>Select Student</option>
                 <option value="{{d.id}}" *ngFor="let d of users">{{d.fullname}}</option>
