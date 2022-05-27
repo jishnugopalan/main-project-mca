@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="text-center">Complaints</h1>
+    <div class="table-responsive">
+        <table class="table">
+        
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th>Student Name</th>
+            <th scope="col">Subject</th>
+            
+            <th scope="col">Date and Time</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of complaints;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{d.user.fullname}}</td>
+            <td>{{d.complaint_sub}}</td>
+            <td> {{d.timestamp | date:'dd/MM/yyyy'}} at   {{d.timestamp | date:'hh:mm'}}</td>
+
+            <td *ngIf="d.complaint_status=='not replied'">Not Replied</td>
+            <td *ngIf="d.complaint_status=='replied'">Replied</td>
+            <td *ngIf="d.complaint_status=='send to admin'">
+              Send to admin
+            </td>
+    
+            <td><button class="btn btn-sm btn-success" (click)="viewComplaint(d.complaintid)">View Complaint</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+    <h1 class="text-center">Results</h1>
+    <form [formGroup]="resultForm" (ngSubmit)="onSubmit()" >
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Subject</h3>
+                <input type="text" class="form-control" formControlName="result_subject">
+                <div class="text-danger" *ngIf="resultForm.controls['result_subject'] && resultForm.controls['result_subject'].invalid && resultForm.controls['result_subject'].touched">Result subject is required</div>
+                <div class="text-danger" *ngIf="resultForm.controls['result_subject'] && resultForm.controls['result_subject'].hasError('minlength')">
+                    Result subject should have minimum characters 3
+                </div>
+                <div class="text-danger" *ngIf="resultForm.controls['result_subject'] && resultForm.controls['result_subject'].hasError('maxlength')">
+                    Result subject maximum characters 100 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Description</h3>
+                <input type="text" class="form-control" formControlName="result_description">
+                <div class="text-danger" *ngIf="resultForm.controls['result_description'] && resultForm.controls['result_description'].invalid && resultForm.controls['result_description'].touched">Result description is required</div>
+                <div class="text-danger" *ngIf="resultForm.controls['result_description'] && resultForm.controls['result_description'].hasError('minlength')">
+                    Result description should have minimum character 3
+                </div>
+                <div class="text-danger" *ngIf="resultForm.controls['result_subject'] && resultForm.controls['result_subject'].hasError('maxlength')">
+                    Result description maximum characters 255 
+
+                </div>
+                
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Subject</h3>
+                <input type="file" class="form-control" formControlName="result_file" (change)="selectFile1($event)" accept="application/pdf">
+                <div class="text-danger" *ngIf="resultForm.controls['result_file'] && resultForm.controls['result_file'].invalid && resultForm.controls['result_file'].touched">Result file is required</div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" [disabled]="!resultForm.valid" class="btn btn-primary">Add Result</button>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table">
+        
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Result Subject</th>
+            <th scope="col">Result Description</th>
+            <th scope="col">Result File</th>
+            <th scope="col">Uploaded on</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of results;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{d.result_subject}}</td>
+            <td>{{d.result_description}}</td>
+            <td><button class="btn btn-success" (click)="showResult(d.result_file)">Show Result</button></td>
+            <td> {{d.timestamp | date:'dd/MM/yyyy'}} at   {{d.timestamp | date:'hh:mm'}}</td>
+            <td><button class="btn btn-danger" (click)="deleteResult(d.resultid)">Delete</button></td>
+          </tr>
+         
+        </tbody>
+      </table>
+      </div>
+      
+</div>

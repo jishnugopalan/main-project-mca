@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { StudentServiceService } from './../../student-service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import { TokenStorageService } from 'src/app/token-storage.service';
 export class AddComplaintComponent implements OnInit {
 user:any
 complaints:any=[]
-  constructor(private tokenservice:TokenStorageService,private studentService:StudentServiceService) { }
+  constructor(private tokenservice:TokenStorageService,private studentService:StudentServiceService,private router:Router) { }
 complaintForm=new FormGroup({
   complaint_sub:new FormControl('',[Validators.required,Validators.maxLength(150),Validators.minLength(3)]),
   complaint:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(1000)])
@@ -24,6 +25,11 @@ addComplaint(){
     alert("Complaint submitted successfully")
     this.ngOnInit()
   })
+}
+viewReplay(complaintid:any){
+console.log(complaintid)
+this.studentService.complaintid=1
+this.router.navigateByUrl("/view-complaints")
 }
   ngOnInit(): void {
     const user = this.tokenservice.getUser();

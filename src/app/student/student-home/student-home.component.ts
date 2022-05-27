@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/admin.service';
 import { StudentServiceService } from './../../student-service.service';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/token-storage.service';
@@ -19,7 +20,8 @@ department=""
 batchname=""
 placementDetails:any
 isFilled=false
-  constructor(private router: Router,private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer) { }
+results:any=[]
+  constructor(private router: Router,private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer,private adminService:AdminService) { }
 
   goto(url:any){
     console.log(url)
@@ -37,6 +39,16 @@ isFilled=false
       importedSaveAs(res, file);
     })
 
+  }
+  showResult(filename:any){
+    console.log(filename)
+  
+    this.studentservice.getPhoto(filename).subscribe((res:any)=>{
+      console.log(res)
+      var file = new Blob([res], { type: 'application/pdf' })
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL)
+    })
   }
   
 
@@ -102,6 +114,13 @@ isFilled=false
       console.log(res)
       this.fullname=res.fullname
     })
+
+
+    this.adminService.getAllResults().subscribe((res:any)=>{
+      console.log(res)
+      this.results=res
+    })
+
   }
 
 }

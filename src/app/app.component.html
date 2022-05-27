@@ -32,6 +32,9 @@
           <li class="nav-item" *ngIf="isrep">
             <a class="nav-link" [routerLink]="['mystudents']">My Students</a>
           </li>
+          <li class="nav-item" *ngIf="isrep">
+            <a class="nav-link" [routerLink]="['get-complaints']">Complaints</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['create-resume']">Create Resume</a>
           </li>
@@ -91,6 +94,14 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['add-department']">Departments</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['view-admin-complaint']">Complaints</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['add-results']">Results</a>
             
           </li>
           <li>

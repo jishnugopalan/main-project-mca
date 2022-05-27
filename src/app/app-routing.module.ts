@@ -16,6 +16,11 @@ import { ViewStudentDetailsComponent } from './student/view-student-details/view
 import { CreateResumeComponent } from './student/create-resume/create-resume.component';
 import { MyresumeComponent } from './student/myresume/myresume.component';
 import { AddComplaintComponent } from './student/add-complaint/add-complaint.component';
+import { GetComplaintsComponent } from './student/get-complaints/get-complaints.component';
+import { ViewComplaintsComponent } from './student/view-complaints/view-complaints.component';
+import { ViewAdminComplaintComponent } from './admin/view-admin-complaint/view-admin-complaint.component';
+import { ViewComplaintsToAdminComponent } from './admin/view-complaints-to-admin/view-complaints-to-admin.component';
+import { AddResultsComponent } from './admin/add-results/add-results.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -33,14 +38,12 @@ const routes: Routes = [
   {path:'view-student-details',component:ViewStudentDetailsComponent},
   {path:'create-resume',component:CreateResumeComponent},
   {path:'myresume',component:MyresumeComponent},
-  {path:'add-complaint',component:AddComplaintComponent}
-
-
-
-
-
-
-
+  {path:'add-complaint',component:AddComplaintComponent},
+  {path:'get-complaints',component:GetComplaintsComponent},
+  {path:'view-complaints',component:ViewComplaintsComponent},
+  {path:'view-admin-complaint',component:ViewAdminComplaintComponent},
+  {path:'view-admin-to-complaints',component:ViewComplaintsToAdminComponent},
+  {path:'add-results',component:AddResultsComponent}
  
 ];
 
@@ -51,5 +54,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents=[RegistrationComponent,AddPlacementDetailsComponent,StudentHomeComponent,AdminHomeComponent,AddPlacementDetailsComponent,ViewPlacementDetailsComponent,
   UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent,MystudentsComponent,ViewStudentDetailsComponent,CreateResumeComponent,MyresumeComponent,
-  AddComplaintComponent]
+  AddComplaintComponent,GetComplaintsComponent,ViewComplaintsComponent,ViewAdminComplaintComponent,ViewComplaintsToAdminComponent,AddResultsComponent]
 

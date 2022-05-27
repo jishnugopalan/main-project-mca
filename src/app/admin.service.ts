@@ -167,5 +167,33 @@ public deleteBatch(_batchid:any){
     }
   })
 }
+public getAllAdminComplaints(){
+  return this.http.get("http://localhost:8080/get-admin-to-complaint")
+}
+public addResults(result:any):Observable<any>{
+  let body = new FormData();
+  body.append('result_subject',result.result_subject)
+  body.append('result_description',result.result_description)
+  body.append('result_file',result.result_file)
+
+
+ 
+  const myheader = new HttpHeaders().set('Content-Type', 'form-data')
+
+  return this.http.post("http://localhost:8080/add-result",body
+  
+  );
+}
+public getAllResults(){
+  return this.http.get("http://localhost:8080/get-all-result")
+}
+public deleteResult(_resultid:any){
+  return this.http.delete("http://localhost:8080/delete-result",{
+    params:{
+      resultid:_resultid
+    }
+  })
+}
+
 
 }

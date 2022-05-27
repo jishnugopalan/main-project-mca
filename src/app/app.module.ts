@@ -29,6 +29,11 @@ import { ViewStudentDetailsComponent } from './student/view-student-details/view
 import { CreateResumeComponent } from './student/create-resume/create-resume.component';
 import { MyresumeComponent } from './student/myresume/myresume.component';
 import { AddComplaintComponent } from './student/add-complaint/add-complaint.component';
+import { GetComplaintsComponent } from './student/get-complaints/get-complaints.component';
+import { ViewComplaintsComponent } from './student/view-complaints/view-complaints.component';
+import { ViewAdminComplaintComponent } from './admin/view-admin-complaint/view-admin-complaint.component';
+import { ViewComplaintsToAdminComponent } from './admin/view-complaints-to-admin/view-complaints-to-admin.component';
+import { AddResultsComponent } from './admin/add-results/add-results.component';
 
 
 @NgModule({
@@ -54,6 +59,11 @@ import { AddComplaintComponent } from './student/add-complaint/add-complaint.com
     CreateResumeComponent,
     MyresumeComponent,
     AddComplaintComponent,
+    GetComplaintsComponent,
+    ViewComplaintsComponent,
+    ViewAdminComplaintComponent,
+    ViewComplaintsToAdminComponent,
+    AddResultsComponent,
     
   ],
   imports: [

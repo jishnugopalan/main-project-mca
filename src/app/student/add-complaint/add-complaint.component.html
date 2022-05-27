@@ -28,9 +28,9 @@
             <div class="text-danger" *ngIf="complaintForm.controls['complaint'] && complaintForm.controls['complaint'].hasError('minlength')">
                 Complaint should have minimum length 3
             </div>
-            <!-- <div class="text-danger" *ngIf="complaintForm.controls['complaint'] && complaintForm.controls['complaint'].hasError('maxlength')">
-                Complaint should have minimum length 3
-            </div> -->
+            <div class="text-danger" *ngIf="complaintForm.controls['complaint'] && complaintForm.controls['complaint'].hasError('maxlength')">
+                Complaint should have maximum length 1000
+            </div>
         </div>
     </div>
     <div class="col-md-6">
@@ -56,14 +56,17 @@
         <td>{{d.complaint_sub}}</td>
         <td>{{d.complaint}}</td>
         <td> {{d.timestamp | date:'dd/MM/yyyy'}} at   {{d.timestamp | date:'hh:mm'}}</td>
-        <td *ngIf="d.complaint_status!='replied'">Not Replied</td>
+        <td *ngIf="d.complaint_status=='not replied'">Not Replied</td>
         <td *ngIf="d.complaint_status=='replied'">Replied</td>
+        <td *ngIf="d.complaint_status=='send to admin'">
+            Send to admin
+          </td>
 
-        <td><button class="btn btn-sm btn-success" *ngIf="d.complaint_status=='replied'">View Replay</button></td>
+        <td><button class="btn btn-sm btn-success" *ngIf="d.complaint_status=='replied'" (click)="viewReplay(d.complaintid)">View Replay</button></td>
       </tr>
       
     </tbody>
   </table>
-  </div>
+</div>
   
 </div>

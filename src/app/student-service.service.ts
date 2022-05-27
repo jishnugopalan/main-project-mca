@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class StudentServiceService {
   departmentid:any
   userid:any
+  complaintid:any
 
   constructor(private http:HttpClient) { }
   public viewstudentdetailsbyid(_userid:any):Observable<any>{
@@ -171,6 +172,33 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
       userid:_userid
     }
   })
+ }
+ public getComplaintByDepartmentid(_departmentid:any){
+  return this.http.get("http://localhost:8080/get-complaints-by-departmentid",{
+    params:{
+      departmentid:_departmentid
+    }
+  })
+ }
+ public getComplaintById(_complaintid:any){
+  return this.http.get("http://localhost:8080/get-complaint-by-id",{
+    params:{
+      complaintid:_complaintid
+    }
+  })
+ }
+ public sendComplaintReply(reply:any):Observable<any>{
+  return this.http.post("http://localhost:8080/add-complaint-replay",reply)
+ }
+ public getComplaintReplyById(_complaintid:any){
+  return this.http.get("http://localhost:8080/get-complaint-reply",{
+    params:{
+      complaintid:_complaintid
+    }
+  })
+ }
+ public sendComplaintToAdmin(complaint:any):Observable<any>{
+  return this.http.post("http://localhost:8080/add-admin-to-complaint",complaint)
  }
 
 }
