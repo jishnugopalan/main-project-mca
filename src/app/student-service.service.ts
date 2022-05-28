@@ -200,5 +200,64 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
  public sendComplaintToAdmin(complaint:any):Observable<any>{
   return this.http.post("http://localhost:8080/add-admin-to-complaint",complaint)
  }
+ public updateProfile(user:any):Observable<any>{
+
+   
+  let body = new FormData();
+  body.append('id', user.id);
+  body.append('fullname', user.fullname);
+  body.append('username', user.username);
+  body.append('phone', user.phone);
+
+    const myheader = new HttpHeaders().set('Content-Type', 'form-data')
+  
+      return this.http.post("http://localhost:8080/api/auth/update-profile",body
+      
+      );
+    }
+  public updatePassword(password:any):Observable<any>{
+
+  
+    let body = new FormData();
+    body.append('id', password.id);
+    body.append('password', password.password);
+    
+      const myheader = new HttpHeaders().set('Content-Type', 'form-data')
+    
+        return this.http.post("http://localhost:8080/api/auth/update-password",body
+        
+        );
+      }
+  public verifyEmail(_email:any):Observable<any>{
+    return this.http.get("http://localhost:8080/api/auth/verify-email",{
+      params:{
+        email:_email.email
+      }
+    })
+  }
+  public sendOtp(_email:any){
+    let body = new FormData();
+    body.append('email', _email);
+    return this.http.post("http://localhost:8080/api/auth/send-otp",body)
+  }
+  public verifyOtp(_otp:any){
+    return this.http.get("http://localhost:8080/api/auth/validate-otp",{
+      params:{
+        email:_otp.email,
+        otp:_otp.otp
+      }
+    })
+  }
+  public getUnknownUser(_email:any){
+
+    return this.http.get("http://localhost:8080/api/auth/get-unknown-user",{
+      params:{
+        email:_email
+      }
+    });
+
+  }
+         
+
 
 }

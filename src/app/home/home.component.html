@@ -57,7 +57,7 @@
             <div class="text-danger">Password is required</div>
 
         </div>
-        <a href="#">Forgot Password</a>
+        <a [routerLink]="['forgotpassword']">Forgot Password</a>
         <div class="col-md-12">
             <button type="submit" [disabled]="!loginform.valid" class="btn btn-primary">Submit</button>
         </div>

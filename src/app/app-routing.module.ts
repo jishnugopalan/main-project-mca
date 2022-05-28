@@ -21,6 +21,8 @@ import { ViewComplaintsComponent } from './student/view-complaints/view-complain
 import { ViewAdminComplaintComponent } from './admin/view-admin-complaint/view-admin-complaint.component';
 import { ViewComplaintsToAdminComponent } from './admin/view-complaints-to-admin/view-complaints-to-admin.component';
 import { AddResultsComponent } from './admin/add-results/add-results.component';
+import { UpdateprofileComponent } from './student/updateprofile/updateprofile.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -43,7 +45,9 @@ const routes: Routes = [
   {path:'view-complaints',component:ViewComplaintsComponent},
   {path:'view-admin-complaint',component:ViewAdminComplaintComponent},
   {path:'view-admin-to-complaints',component:ViewComplaintsToAdminComponent},
-  {path:'add-results',component:AddResultsComponent}
+  {path:'add-results',component:AddResultsComponent},
+  {path:'updateprofile',component:UpdateprofileComponent},
+  {path:'forgotpassword',component:ForgotpasswordComponent}
  
 ];
 
@@ -54,5 +58,6 @@ const routes: Routes = [
 export class AppRoutingModule { }
 export const routingComponents=[RegistrationComponent,AddPlacementDetailsComponent,StudentHomeComponent,AdminHomeComponent,AddPlacementDetailsComponent,ViewPlacementDetailsComponent,
   UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent,MystudentsComponent,ViewStudentDetailsComponent,CreateResumeComponent,MyresumeComponent,
-  AddComplaintComponent,GetComplaintsComponent,ViewComplaintsComponent,ViewAdminComplaintComponent,ViewComplaintsToAdminComponent,AddResultsComponent]
+  AddComplaintComponent,GetComplaintsComponent,ViewComplaintsComponent,ViewAdminComplaintComponent,ViewComplaintsToAdminComponent,AddResultsComponent,UpdateprofileComponent,
+  ForgotpasswordComponent]
 

@@ -22,7 +22,9 @@ placementDetails:any
 isFilled=false
 results:any=[]
   constructor(private router: Router,private tokenservice:TokenStorageService,private studentservice:StudentServiceService,private sanitizer: DomSanitizer,private adminService:AdminService) { }
-
+  updateProfile(){
+    this.router.navigateByUrl("/updateprofile")
+  }
   goto(url:any){
     console.log(url)
     
