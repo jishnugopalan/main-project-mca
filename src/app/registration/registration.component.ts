@@ -1,3 +1,4 @@
+import { StudentServiceService } from 'src/app/student-service.service';
 import { AuthserviceService } from './../authservice.service';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   reg=false
   alert=false
   msg=""
-
+  otp=false
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
     let pass = group.get('password')?.value
     let confirmPass = group.get('confirm_password')?.value
@@ -50,7 +51,9 @@ export class RegistrationComponent implements OnInit {
     
   },{validators:this.checkPasswords})
 
-  
+  otpForm=new FormGroup({
+    otp:new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(6)])
+  })
 
   get department(){
     return this.registration.get('department')
@@ -75,11 +78,14 @@ export class RegistrationComponent implements OnInit {
     return this.registration.get('confirm_paswword')
   }
   //user=new User(this.registration.value.username,this.registration.value.email,this.registration.value.phone,)
-  register(){
-    
-    console.log(this.registration.value)
+  verifyOtp(){
+    this.otpForm.value.email=this.registration.value.username
+    console.log(this.otpForm.value)
+    this.studentService.verifyOtp(this.otpForm.value).subscribe((res:any)=>{
+      console.log(this.registration.value)
     this.auth.register(this.registration.value).subscribe(
       (data:any)=>{
+        this.otp=false
         this.alert=false
         this.reg=true
       console.log(data)
@@ -92,11 +98,45 @@ export class RegistrationComponent implements OnInit {
 
     }
     );
+   
+    },error=>{
+      console.log(error.error.message)
+      alert(error.error.message)
+    })
+  }
+  register(){
+    console.log(this.registration.value.username)
+    this.studentService.verifyEmail({"email":this.registration.value.username}).subscribe((res:any)=>{
+      console.log(res)
+      this.msg=res.message
+      this.alert=true
+     
+    },error=>{
+      this.studentService.verifyPhone(this.registration.value.phone).subscribe((res:any)=>{
+        console.log(res)
+        this.msg=res.message
+        this.alert=true
+      },error=>{
+        console.log(error.error.message)
+        this.studentService.sendOtp(this.registration.value.username).subscribe((res:any)=>{
+        console.log(res)
+        this.otp=true
+        this.reg=false
+        alert(res.message)
+      })
+
+      })
+      
+    })
+    
+
+    
+    
   
 
   }
 
-  constructor(private service:RegistrationServiceService,private auth:AuthserviceService) { }
+  constructor(private service:RegistrationServiceService,private auth:AuthserviceService,private studentService:StudentServiceService) { }
 
   ngOnInit(): void {
     

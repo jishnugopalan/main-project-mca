@@ -2,31 +2,33 @@
     <h1 class="text-center">Update Placement Details</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="companyname">Company Name<span id="s">*</span></label>
                 <input type="text" class="form-control" formControlName="companyname" id="companyname" placeholder="Minimum two characters" [(ngModel)]="pdetails.companyname">
                 <div class="text-danger"  *ngIf="form.controls['companyname'] && form.controls['companyname'].hasError('required') && form.controls['companyname'].touched">Company name is required</div>
+                <div class="text-danger"  *ngIf="form.controls['companyname'] && form.controls['companyname'].hasError('maxlength')">Maximum number of characters 100</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Designation<span id="s">*</span></label>
                 <input type="text" class="form-control" formControlName="designation" placeholder="Minimum two characters" [(ngModel)]="pdetails.designantion">
                 <div class="text-danger"  *ngIf="form.controls['designation'] && form.controls['designation'].hasError('required') && form.controls['designation'].touched">Designation is required</div>
-
+                <div class="text-danger"  *ngIf="form.controls['designation'] && form.controls['designation'].hasError('maxlength')">Maximum number of characters 100</div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>CTC in LPA<span id="s">*</span></label>
                 <input type="text" class="form-control" formControlName="ctc" placeholder="Example 4 or 4.5" [(ngModel)]="pdetails.ctc">
                 <div class="text-danger"  *ngIf="form.controls['ctc'] && form.controls['ctc'].hasError('required') && form.controls['ctc'].touched">CTC is required</div>
                 <div class="text-danger"  *ngIf="form.controls['ctc'] && form.controls['ctc'].hasError('pattern')">Use Integer or Real numbers</div>
 
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row">
+           
+            <div class="col-md-12">
                 <label>Description<span id="s">*</span></label>
-                <input type="text" class="form-control" formControlName="description" placeholder="Minimum 10 characters" [(ngModel)]="pdetails.description">
+                <textarea class="form-control" formControlName="description" placeholder="Minimum 10 characters" [(ngModel)]="pdetails.description" rows="5"></textarea>
                 <div class="text-danger"  *ngIf="form.controls['description'] && form.controls['description'].hasError('required') && form.controls['description'].touched">Description is required</div>
-
+                <div class="text-danger"  *ngIf="form.controls['description'] && form.controls['description'].hasError('maxlength')">Maximum number of characters 1000</div>
             </div>
 
         </div>

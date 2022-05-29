@@ -23,6 +23,8 @@ import { ViewComplaintsToAdminComponent } from './admin/view-complaints-to-admin
 import { AddResultsComponent } from './admin/add-results/add-results.component';
 import { UpdateprofileComponent } from './student/updateprofile/updateprofile.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -47,7 +49,9 @@ const routes: Routes = [
   {path:'view-admin-to-complaints',component:ViewComplaintsToAdminComponent},
   {path:'add-results',component:AddResultsComponent},
   {path:'updateprofile',component:UpdateprofileComponent},
-  {path:'forgotpassword',component:ForgotpasswordComponent}
+  {path:'forgotpassword',component:ForgotpasswordComponent},
+  {path:'contactus',component:ContactusComponent},
+  {path:'about',component:AboutComponent}
  
 ];
 
@@ -59,5 +63,5 @@ export class AppRoutingModule { }
 export const routingComponents=[RegistrationComponent,AddPlacementDetailsComponent,StudentHomeComponent,AdminHomeComponent,AddPlacementDetailsComponent,ViewPlacementDetailsComponent,
   UpdatePlacementDetailsComponent,AddRepComponent,AddDepartmentComponent,MystudentsComponent,ViewStudentDetailsComponent,CreateResumeComponent,MyresumeComponent,
   AddComplaintComponent,GetComplaintsComponent,ViewComplaintsComponent,ViewAdminComplaintComponent,ViewComplaintsToAdminComponent,AddResultsComponent,UpdateprofileComponent,
-  ForgotpasswordComponent]
+  ForgotpasswordComponent,ContactusComponent,AboutComponent]
 

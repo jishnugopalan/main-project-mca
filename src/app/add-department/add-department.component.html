@@ -6,6 +6,8 @@
             <input class="form-control" formControlName="department">
             <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('required') && form.controls['department'].touched">Department is required</div>
             <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('minlength')">Department should have minimum length 2</div>
+            <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('maxlength')">Department should have maximum length 100</div>
+
             <div class="text-danger" *ngIf="form.controls['department'] && form.controls['department'].hasError('pattern')">Please input a valid department</div>
            <div class="text-danger">{{error}}</div>
 
@@ -52,6 +54,8 @@
             <input class="form-control" formControlName="batchname">
             <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('required') && batchForm.controls['batchname'].touched">Batch is required</div>
             <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('minlength')">Batch should have minimum length 2</div>
+            <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('maxlength')">Batch should have maximum length 100</div>
+
             <div class="text-danger" *ngIf="batchForm.controls['batchname'] && batchForm.controls['batchname'].hasError('pattern')">Please input a valid batch</div>
             <div class="text-danger">{{error2}}</div>
         </div>

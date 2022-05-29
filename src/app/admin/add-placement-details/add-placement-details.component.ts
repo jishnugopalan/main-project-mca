@@ -31,7 +31,8 @@ export class AddPlacementDetailsComponent implements OnInit {
     ]),
     description:new FormControl('',[
       Validators.required,
-      Validators.minLength(10)
+      Validators.minLength(10),
+      Validators.maxLength(1000)
     ]),
     registration_link:new FormControl('',[
       Validators.required,

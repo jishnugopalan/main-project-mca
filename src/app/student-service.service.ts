@@ -235,6 +235,13 @@ body.append('academic_ending_year',userDetails.academic_ending_year)
       }
     })
   }
+  public verifyPhone(_phone:any):Observable<any>{
+    return this.http.get("http://localhost:8080/api/auth/verify-phone",{
+      params:{
+        phone:_phone
+      }
+    })
+  }
   public sendOtp(_email:any){
     let body = new FormData();
     body.append('email', _email);

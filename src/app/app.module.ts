@@ -36,6 +36,8 @@ import { ViewComplaintsToAdminComponent } from './admin/view-complaints-to-admin
 import { AddResultsComponent } from './admin/add-results/add-results.component';
 import { UpdateprofileComponent } from './student/updateprofile/updateprofile.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     AddResultsComponent,
     UpdateprofileComponent,
     ForgotpasswordComponent,
+    ContactusComponent,
+    AboutComponent,
     
   ],
   imports: [

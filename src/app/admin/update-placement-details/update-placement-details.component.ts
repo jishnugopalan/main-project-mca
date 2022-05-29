@@ -22,11 +22,13 @@ export class UpdatePlacementDetailsComponent implements OnInit {
   form=new FormGroup({
     companyname:new FormControl('',[
       Validators.required,
-      Validators.minLength(2)
+      Validators.minLength(2),
+      Validators.maxLength(100)
     ]),
     designation:new FormControl('',[
       Validators.required,
-      Validators.minLength(2)
+      Validators.minLength(2),
+      Validators.maxLength(100)
     ]),
     ctc:new FormControl('',[
       Validators.required,
@@ -35,7 +37,8 @@ export class UpdatePlacementDetailsComponent implements OnInit {
     ]),
     description:new FormControl('',[
       Validators.required,
-      Validators.minLength(10)
+      Validators.minLength(10),
+      Validators.maxLength(1000)
     ]),
     registration_link:new FormControl('',[
       Validators.required,
