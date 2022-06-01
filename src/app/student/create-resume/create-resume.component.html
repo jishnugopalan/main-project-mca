@@ -21,7 +21,7 @@
             <h3>Education Details</h3>
             <form [formGroup]="educationForm" (ngSubmit)="addEducation()" >
                 <input type="text" placeholder="School/College" class="form-control" formControlName="school_or_college">
-                <input type="text" placeholder="Strem" class="form-control" formControlName="stream">
+                <input type="text" placeholder="Stream" class="form-control" formControlName="stream">
                 <input type="number" min="1990" placeholder="Starting year" class="form-control" formControlName="year_start">
                 <input type="number" min="1990" placeholder="Ending Year" class="form-control" formControlName="year_end">
                 <input type="number" max="100" placeholder="Score in percentage" class="form-control" formControlName="score">

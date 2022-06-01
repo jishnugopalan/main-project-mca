@@ -37,9 +37,7 @@ export class RegistrationComponent implements OnInit {
       
       
     ]),
-    // department:new FormControl('',[
-     
-    // ]),
+   
     password:new FormControl('',[
       Validators.required,
       Validators.minLength(6)
@@ -77,7 +75,7 @@ export class RegistrationComponent implements OnInit {
   get confirm_password(){
     return this.registration.get('confirm_paswword')
   }
-  //user=new User(this.registration.value.username,this.registration.value.email,this.registration.value.phone,)
+  
   verifyOtp(){
     this.otpForm.value.email=this.registration.value.username
     console.log(this.otpForm.value)
@@ -140,13 +138,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
-    // this.service.getDepartment().subscribe((res:any)=>{
-    //  console.log(res);
-    //  this.dep=res;
-
-    // })
-   
   }
 
 }
